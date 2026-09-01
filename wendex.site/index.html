@@ -1,5098 +1,2449 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>БУРМАЛДа))0</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&family=Exo+2:wght@700;800;900&family=Russo+One&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-    :root {
-      --purple: rgb(127, 93, 186);
-      --cyan: rgb(131, 220, 230);
-
-      --bg: #08080d;
-      --card: #101019;
-      --card2: #151522;
-
-      --muted: #9898a8;
-
-      --danger: #ff6e6e;
-      --success: #75f3b3;
-      --warning: #ffd36e;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-
-      background:
-        radial-gradient(
-          circle at 50% -10%,
-          rgba(127, 93, 186, 0.18),
-          transparent 34%
-        ),
-        linear-gradient(
-          180deg,
-          #08080d 0%,
-          #0b0b12 100%
-        );
-
-      color: #fff;
-
-      font-family: "Cairo", sans-serif;
-      font-weight: 900;
-    }
-
-    button,
-    input {
-      font: inherit;
-      font-weight: 900;
-    }
-
-    button {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    /* =====================================================
-       MENU
-    ===================================================== */
-
-    .menu-button {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 1200;
-
-      width: 48px;
-      height: 48px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: 2px solid var(--cyan);
-      border-radius: 14px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(127, 93, 186, 0.18),
-          rgba(16, 16, 25, 0.98)
-        );
-
-      color: var(--cyan);
-      font-size: 24px;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 0 16px rgba(131, 220, 230, 0.07);
-
-      transition: 0.2s ease;
-    }
-
-    .menu-button:hover {
-      transform: scale(1.05);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(127, 93, 186, 0.34),
-          rgba(16, 16, 25, 0.98)
-        );
-
-      box-shadow:
-        0 0 22px rgba(131, 220, 230, 0.12);
-    }
-
-    .menu-button.menu-hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    /* =====================================================
-       CLEAR
-    ===================================================== */
-
-    .clear-button {
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 900;
-
-      padding: 12px 17px;
-
-      border: 2px solid var(--cyan);
-      border-radius: 15px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(127, 93, 186, 0.17),
-          rgba(16, 16, 25, 0.98)
-        );
-
-      color: var(--cyan);
-      font-size: 14px;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 0 18px rgba(131, 220, 230, 0.07);
-
-      transition: 0.2s ease;
-    }
-
-    .clear-button:hover {
-      transform: translateY(-2px);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(127, 93, 186, 0.34),
-          rgba(16, 16, 25, 0.98)
-        );
-
-      box-shadow:
-        0 0 24px rgba(131, 220, 230, 0.11);
-    }
-
-    /* =====================================================
-       PAGE
-    ===================================================== */
-
-    .page {
-      width: min(1700px, calc(100% - 24px));
-      margin: 0 auto;
-
-      padding:
-        82px
-        0
-        125px;
-    }
-
-    /* =====================================================
-       TITLE
-    ===================================================== */
-
-    .site-title {
-      margin: 0 0 24px;
-
-      text-align: center;
-
-      font-family: "Russo One", sans-serif;
-
-      font-size:
-        clamp(40px, 6vw, 76px);
-
-      line-height: 0.95;
-      letter-spacing: 1px;
-
-      color: var(--cyan);
-
-      text-shadow:
-        0 0 8px rgba(131, 220, 230, 0.16),
-        0 0 18px rgba(131, 220, 230, 0.20),
-        0 0 34px rgba(127, 93, 186, 0.25);
-    }
-
-    /* =====================================================
-       AI BUTTON
-    ===================================================== */
-
-    .ai-button-wrap {
-      display: flex;
-      justify-content: center;
-
-      margin:
-        0
-        0
-        30px;
-    }
-
-    .ai-button {
-      min-width: 270px;
-
-      padding:
-        14px
-        22px;
-
-      border:
-        2px solid
-        var(--cyan);
-
-      border-radius: 15px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(127, 93, 186, 0.95),
-          rgba(127, 93, 186, 0.50)
-        );
-
-      color: #fff;
-
-      font-size: 16px;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 0 20px
-        rgba(127, 93, 186, 0.10);
-
-      transition:
-        0.2s ease;
-    }
-
-    .ai-button:hover {
-      transform: translateY(-2px);
-
-      filter: brightness(1.10);
-
-      box-shadow:
-        0 0 28px
-        rgba(127, 93, 186, 0.16);
-    }
-
-    .ai-button:disabled {
-      opacity: 0.55;
-
-      cursor: wait;
-
-      transform: none;
-
-      filter: none;
-    }
-
-    /* =====================================================
-       LOADING / ERROR
-    ===================================================== */
-
-    .loading,
-    .error {
-      padding: 40px 20px;
-
-      border:
-        2px solid
-        var(--purple);
-
-      border-radius: 20px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(127, 93, 186, 0.10),
-          rgba(16, 16, 25, 0.92)
-        );
-
-      text-align: center;
-
-      color: var(--cyan);
-
-      font-size: 18px;
-    }
-
-    .error {
-      color: #ff9999;
-
-      border-color:
-        #ff6666;
-    }
-
-    /* =====================================================
-       3 SELLER COLUMNS
-    ===================================================== */
-
-    .sellers-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(
-          3,
-          minmax(410px, 1fr)
-        );
-
-      gap: 18px;
-
-      align-items: start;
-
-      overflow-x: auto;
-
-      padding-bottom: 6px;
-    }
-
-    .seller {
-      min-width: 410px;
-
-      padding: 13px;
-
-      border:
-        2px solid
-        var(--purple);
-
-      border-radius: 21px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(127, 93, 186, 0.09),
-          rgba(10, 10, 17, 0.98)
-        );
-
-      box-shadow:
-        inset 0 0 28px
-        rgba(127, 93, 186, 0.025),
-
-        0 0 18px
-        rgba(127, 93, 186, 0.025);
-    }
-
-    /* =====================================================
-       SELLER HEADER
-    ===================================================== */
-
-    .seller-header {
-      display: flex;
-      flex-direction: column;
-
-      gap: 10px;
-
-      margin-bottom: 12px;
-      padding: 13px;
-
-      border:
-        1px solid
-        rgba(131, 220, 230, 0.30);
-
-      border-radius: 15px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(131, 220, 230, 0.025),
-          rgba(0, 0, 0, 0.13)
-        );
-    }
-
-    .seller-name {
-      min-width: 0;
-
-      text-align: center;
-
-      font-family:
-        "Russo One",
-        sans-serif;
-
-      font-size:
-        clamp(21px, 2vw, 29px);
-
-      line-height: 1.05;
-
-      color: var(--cyan);
-
-      overflow-wrap: anywhere;
-
-      text-shadow:
-        0 0 10px
-        rgba(131, 220, 230, 0.08);
-    }
-
-    .seller-total {
-      text-align: center;
-
-      color: #fff;
-
-      font-size: 14px;
-    }
-
-    .seller-total span {
-      color: var(--cyan);
-
-      font-size: 19px;
-    }
-
-    .sold-button {
-      width: 100%;
-
-      min-height: 44px;
-
-      border:
-        2px solid
-        var(--cyan);
-
-      border-radius: 12px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(127, 93, 186, 0.95),
-          rgba(127, 93, 186, 0.58)
-        );
-
-      color: #fff;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 0 16px
-        rgba(127, 93, 186, 0.08);
-
-      transition:
-        0.2s ease;
-    }
-
-    .sold-button:hover {
-      transform: translateY(-2px);
-
-      filter: brightness(1.10);
-
-      box-shadow:
-        0 0 23px
-        rgba(127, 93, 186, 0.14);
-    }
-
-    .sold-button.saved {
-      background:
-        rgba(117, 243, 179, 0.11);
-
-      border-color:
-        var(--success);
-
-      color:
-        var(--success);
-    }
-
-    /* =====================================================
-       PRODUCTS
-    ===================================================== */
-
-    .products {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 9px;
-    }
-
-    .product-card {
-      display: grid;
-
-      grid-template-columns:
-        60px
-        minmax(180px, 1fr)
-        74px
-        105px;
-
-      align-items: center;
-
-      gap: 10px;
-
-      min-height: 80px;
-
-      padding:
-        9px
-        10px;
-
-      border:
-        1px solid
-        rgba(131, 220, 230, 0.28);
-
-      border-radius: 15px;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(16, 16, 25, 0.97),
-          rgba(11, 11, 18, 0.97)
-        );
-
-      transition:
-        border-color 0.18s ease,
-        background 0.18s ease,
-        box-shadow 0.18s ease;
-    }
-
-    .product-card:hover {
-      border-color:
-        rgba(131, 220, 230, 0.60);
-    }
-
-    .product-card.has-quantity {
-      border-color:
-        var(--purple);
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(127, 93, 186, 0.18),
-          rgba(16, 16, 25, 0.98)
-        );
-
-      box-shadow:
-        inset 0 0 0 1px
-        rgba(127, 93, 186, 0.10),
-
-        0 0 13px
-        rgba(127, 93, 186, 0.035);
-    }
-
-    .product-icon {
-      width: 60px;
-      height: 60px;
-
-      object-fit: contain;
-
-      padding: 4px;
-
-      border:
-        1px solid
-        rgba(131, 220, 230, 0.24);
-
-      border-radius: 12px;
-
-      background:
-        rgba(0, 0, 0, 0.24);
-    }
-
-    .product-info {
-      min-width: 0;
-      overflow: visible;
-    }
-
-    .product-name {
-      margin: 0;
-
-      font-family:
-        "Exo 2",
-        sans-serif;
-
-      font-weight: 900;
-
-      font-size:
-        clamp(15px, 1.18vw, 20px);
-
-      line-height: 1.08;
-
-      color: #fff;
-
-      white-space: normal;
-
-      overflow-wrap: anywhere;
-      word-break: normal;
-    }
-
-    .product-price {
-      margin-top: 6px;
-      margin-left: 10px;
-
-      color:
-        var(--cyan);
-
-      font-size: 11px;
-
-      line-height: 1.15;
-
-      white-space: normal;
-
-      overflow-wrap: anywhere;
-    }
-
-    /* =====================================================
-       QUANTITY
-    ===================================================== */
-
-    .quantity-area {
-      width: 74px;
-      min-width: 74px;
-      height: 100%;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      overflow: visible;
-    }
-
-    .quantity-input {
-      display: block;
-
-      width: 44px;
-      min-width: 44px;
-      max-width: none;
-
-      padding:
-        7px
-        7px;
-
-      border:
-        2px solid
-        var(--cyan);
-
-      border-radius: 10px;
-
-      background:
-        #0a0a11;
-
-      color:
-        var(--cyan);
-
-      text-align: center;
-      text-align-last: center;
-
-      outline: none;
-
-      flex: 0 0 auto;
-
-      /*
-        Убираем стандартные spin-кнопки
-        Firefox.
-      */
-
-      -moz-appearance:
-        textfield;
-
-      appearance:
-        textfield;
-
-      transition:
-        width 0.12s ease,
-        border-color 0.15s ease,
-        box-shadow 0.15s ease;
-    }
-
-    /*
-      Убираем стрелочки Chrome / Edge / Safari.
-    */
-
-    .quantity-input::-webkit-outer-spin-button,
-    .quantity-input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      appearance: none;
-      margin: 0;
-    }
-
-    .quantity-input:focus {
-      border-color:
-        var(--purple);
-
-      box-shadow:
-        0 0 0 3px
-        rgba(127, 93, 186, 0.14),
-
-        0 0 13px
-        rgba(127, 93, 186, 0.08);
-    }
-
-    /* =====================================================
-       SUM
-    ===================================================== */
-
-    .sum-area {
-      width: 105px;
-      min-width: 105px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      overflow: visible;
-    }
-
-    .sum {
-      display: block;
-
-      width: 84px;
-      min-width: 84px;
-
-      text-align: center;
-
-      line-height: 1;
-
-      color:
-        var(--purple);
-
-      white-space: nowrap;
-
-      transition:
-        width 0.12s ease,
-        color 0.15s ease;
-    }
-
-    .product-card.has-quantity .sum {
-      color:
-        var(--cyan);
-    }
-
-    /* =====================================================
-       TOTAL
-    ===================================================== */
-
-    .bottom-total {
-      margin-top: 11px;
-
-      padding: 12px;
-
-      border:
-        1px solid
-        var(--purple);
-
-      border-radius: 14px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(127, 93, 186, 0.09),
-          rgba(127, 93, 186, 0.025)
-        );
-
-      text-align: center;
-    }
-
-    .bottom-total-label {
-      color: #fff;
-
-      font-size: 13px;
-    }
-
-    .bottom-total-value {
-      display: block;
-
-      margin-top: 4px;
-
-      color:
-        var(--cyan);
-
-      font-size: 24px;
-
-      line-height: 1;
-    }
-
-    /* =====================================================
-       AI MODAL
-    ===================================================== */
-
-    .ai-overlay {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 1500;
-
-      display: none;
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 16px;
-
-      background:
-        rgba(0, 0, 0, 0.78);
-
-      backdrop-filter:
-        blur(10px);
-    }
-
-    .ai-overlay.open {
-      display: flex;
-    }
-
-    .ai-modal {
-      width: min(720px, 100%);
-
-      max-height:
-        calc(100vh - 32px);
-
-      overflow-y: auto;
-
-      padding: 20px;
-
-      border:
-        2px solid
-        var(--purple);
-
-      border-radius: 22px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(22, 20, 34, 0.99),
-          rgba(10, 10, 17, 0.99)
-        );
-
-      box-shadow:
-        0 20px 70px
-        rgba(0, 0, 0, 0.55);
-    }
-
-    .ai-modal-header {
-      display: flex;
-
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 15px;
-
-      margin-bottom: 18px;
-    }
-
-    .ai-modal-title {
-      font-family:
-        "Russo One",
-        sans-serif;
-
-      color:
-        var(--cyan);
-
-      font-size: 25px;
-    }
-
-    .ai-close {
-      width: 42px;
-      height: 42px;
-
-      border:
-        2px solid
-        var(--cyan);
-
-      border-radius: 12px;
-
-      background:
-        rgba(16, 16, 25, 0.95);
-
-      color:
-        var(--cyan);
-
-      cursor: pointer;
-
-      font-size: 22px;
-    }
-
-    .ai-dropzone {
-      display: flex;
-
-      flex-direction: column;
-
-      align-items: center;
-      justify-content: center;
-
-      min-height: 230px;
-
-      padding: 28px;
-
-      border:
-        2px dashed
-        rgba(131, 220, 230, 0.48);
-
-      border-radius: 17px;
-
-      background:
-        rgba(131, 220, 230, 0.025);
-
-      text-align: center;
-
-      cursor: pointer;
-
-      transition:
-        border-color 0.18s ease,
-        background 0.18s ease;
-    }
-
-    .ai-dropzone:hover,
-    .ai-dropzone.dragover {
-      border-color:
-        var(--cyan);
-
-      background:
-        rgba(127, 93, 186, 0.10);
-    }
-
-    .ai-dropzone-icon {
-      font-size: 52px;
-      line-height: 1;
-
-      margin-bottom: 12px;
-    }
-
-    .ai-dropzone-title {
-      color:
-        var(--cyan);
-
-      font-size: 20px;
-    }
-
-    .ai-dropzone-subtitle {
-      margin-top: 6px;
-
-      color:
-        var(--muted);
-
-      font-size: 13px;
-    }
-
-    #aiFileInput {
-      display: none;
-    }
-
-    .ai-status {
-      min-height: 25px;
-
-      margin-top: 14px;
-
-      color:
-        var(--muted);
-
-      text-align: center;
-
-      font-size: 14px;
-    }
-
-    .ai-status.loading {
-      padding: 0;
-
-      border: none;
-      border-radius: 0;
-
-      background: transparent;
-
-      color:
-        var(--cyan);
-
-      font-size: 14px;
-    }
-
-    .ai-results {
-      margin-top: 14px;
-    }
-
-    .ai-results-title {
-      margin-bottom: 10px;
-
-      color:
-        var(--cyan);
-
-      font-size: 17px;
-    }
-
-    .ai-result-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .ai-result-item {
-      display: grid;
-
-      grid-template-columns:
-        minmax(0, 1fr)
-        90px
-        90px;
-
-      gap: 10px;
-
-      align-items: center;
-
-      padding: 10px 12px;
-
-      border:
-        1px solid
-        rgba(131, 220, 230, 0.22);
-
-      border-radius: 12px;
-
-      background:
-        rgba(255, 255, 255, 0.025);
-    }
-
-    .ai-result-name {
-      color: #fff;
-
-      font-family:
-        "Exo 2",
-        sans-serif;
-
-      overflow-wrap: anywhere;
-    }
-
-    .ai-result-quantity {
-      text-align: center;
-
-      color:
-        var(--cyan);
-    }
-
-    .ai-result-confidence {
-      text-align: right;
-
-      color:
-        var(--success);
-
-      font-size: 12px;
-    }
-
-    .ai-result-empty {
-      padding: 18px;
-
-      border:
-        1px solid
-        rgba(255, 110, 110, 0.35);
-
-      border-radius: 12px;
-
-      color:
-        #ffaaaa;
-
-      text-align: center;
-    }
-
-    .ai-total-box {
-      margin-top: 14px;
-
-      padding: 16px;
-
-      border:
-        2px solid
-        var(--purple);
-
-      border-radius: 15px;
-
-      background:
-        rgba(127, 93, 186, 0.08);
-
-      text-align: center;
-    }
-
-    .ai-total-label {
-      font-size: 14px;
-    }
-
-    .ai-total-value {
-      margin-top: 4px;
-
-      color:
-        var(--cyan);
-
-      font-size: 30px;
-
-      line-height: 1;
-    }
-
-    .ai-actions {
-      display: flex;
-
-      gap: 10px;
-
-      margin-top: 14px;
-    }
-
-    .ai-action-button {
-      flex: 1;
-
-      min-height: 44px;
-
-      border:
-        2px solid
-        var(--cyan);
-
-      border-radius: 12px;
-
-      background:
-        rgba(127, 93, 186, 0.14);
-
-      color: #fff;
-
-      cursor: pointer;
-    }
-
-    .ai-action-button:hover {
-      background:
-        rgba(127, 93, 186, 0.28);
-    }
-
-    .ai-action-button.primary {
-      background:
-        linear-gradient(
-          135deg,
-          rgba(127, 93, 186, 0.95),
-          rgba(127, 93, 186, 0.55)
-        );
-    }
-
-    .ai-action-button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    /* =====================================================
-       MENU
-    ===================================================== */
-
-    .menu-overlay {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 1000;
-
-      display: none;
-
-      padding: 14px;
-
-      background:
-        rgba(0, 0, 0, 0.72);
-
-      backdrop-filter:
-        blur(8px);
-    }
-
-    .menu-overlay.open {
-      display: flex;
-
-      align-items: flex-start;
-
-      justify-content: flex-start;
-    }
-
-    .side-menu {
-      width: min(420px, 100%);
-
-      max-height:
-        calc(100vh - 28px);
-
-      overflow-y: auto;
-
-      padding: 18px;
-
-      border:
-        2px solid
-        var(--purple);
-
-      border-radius: 20px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(22, 20, 34, 0.99),
-          rgba(10, 10, 17, 0.99)
-        );
-
-      box-shadow:
-        0 15px 50px
-        rgba(0, 0, 0, 0.45);
-    }
-
-    .menu-top {
-      display: flex;
-
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 12px;
-
-      margin-bottom: 14px;
-    }
-
-    .menu-title {
-      font-family:
-        "Russo One",
-        sans-serif;
-
-      font-size: 24px;
-
-      color:
-        var(--cyan);
-    }
-
-    .close-menu {
-      width: 42px;
-      height: 42px;
-
-      border:
-        2px solid
-        var(--cyan);
-
-      border-radius: 12px;
-
-      background:
-        rgba(16, 16, 25, 0.90);
-
-      color:
-        var(--cyan);
-
-      cursor: pointer;
-
-      font-size: 22px;
-    }
-
-    /* =====================================================
-       HISTORY
-    ===================================================== */
-
-    .history-empty {
-      padding: 20px 4px;
-
-      color:
-        var(--muted);
-
-      text-align: center;
-    }
-
-    .history-list {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 10px;
-    }
-
-    .history-item {
-      padding: 13px;
-
-      border:
-        1px solid
-        rgba(131, 220, 230, 0.24);
-
-      border-radius: 14px;
-
-      background:
-        rgba(255, 255, 255, 0.025);
-    }
-
-    .history-head {
-      display: flex;
-
-      align-items: flex-start;
-
-      justify-content: space-between;
-
-      gap: 10px;
-    }
-
-    .history-seller {
-      color:
-        var(--cyan);
-
-      font-family:
-        "Exo 2",
-        sans-serif;
-
-      font-size: 18px;
-
-      overflow-wrap: anywhere;
-    }
-
-    .history-date {
-      color:
-        var(--muted);
-
-      font-size: 12px;
-
-      text-align: right;
-
-      white-space: nowrap;
-    }
-
-    .history-total {
-      margin-top: 8px;
-
-      color: #fff;
-    }
-
-    .history-total span {
-      color:
-        var(--cyan);
-
-      font-size: 20px;
-    }
-
-    .history-meta {
-      margin-top: 4px;
-
-      color:
-        var(--muted);
-
-      font-size: 12px;
-
-      font-weight: 800;
-    }
-
-    .history-actions {
-      display: flex;
-
-      gap: 8px;
-
-      margin-top: 10px;
-    }
-
-    .history-actions button {
-      flex: 1;
-
-      min-height: 40px;
-
-      border:
-        1px solid
-        var(--cyan);
-
-      border-radius: 10px;
-
-      background:
-        rgba(127, 93, 186, 0.14);
-
-      color: #fff;
-
-      cursor: pointer;
-
-      font-size: 13px;
-    }
-
-    .history-actions button:hover {
-      background:
-        rgba(127, 93, 186, 0.30);
-    }
-
-    .history-actions .delete-history {
-      border-color:
-        var(--danger);
-
-      color:
-        #ffaaaa;
-
-      background:
-        rgba(255, 70, 70, 0.06);
-    }
-
-    .status-message {
-      min-height: 22px;
-
-      margin-top: 10px;
-
-      color:
-        var(--success);
-
-      text-align: center;
-
-      font-size: 13px;
-    }
-
-    /* =====================================================
-       RESPONSIVE
-    ===================================================== */
-
-    @media (max-width: 1250px) and (min-width: 851px) {
-
-      .sellers-grid {
-        grid-template-columns:
-          repeat(
-            3,
-            minmax(390px, 1fr)
-          );
-      }
-
-      .seller {
-        min-width: 390px;
-      }
-
-      .product-card {
-        grid-template-columns:
-          56px
-          minmax(160px, 1fr)
-          70px
-          96px;
-      }
-
-      .product-icon {
-        width: 56px;
-        height: 56px;
-      }
-
-      .product-name {
-        font-size: 14px;
-      }
-
-      .product-price {
-        font-size: 10px;
-      }
-
-      .quantity-area {
-        width: 70px;
-        min-width: 70px;
-      }
-
-      .sum-area {
-        width: 96px;
-        min-width: 96px;
-      }
-    }
-
-    @media (max-width: 850px) {
-
-      .sellers-grid {
-        grid-template-columns: 1fr;
-
-        gap: 14px;
-
-        overflow-x: visible;
-      }
-
-      .seller {
-        min-width: 0;
-
-        width: 100%;
-
-        padding: 12px;
-      }
-
-      .seller-header {
-        padding: 13px;
-      }
-
-      .seller-name {
-        font-size: 26px;
-      }
-
-      .product-card {
-        grid-template-columns:
-          60px
-          minmax(0, 1fr)
-          74px
-          105px;
-
-        gap: 10px;
-
-        min-height: 82px;
-      }
-
-      .product-icon {
-        width: 60px;
-        height: 60px;
-      }
-
-      .product-name {
-        font-size: 18px;
-      }
-
-      .product-price {
-        margin-left: 10px;
-
-        font-size: 12px;
-      }
-
-      .quantity-area {
-        width: 74px;
-        min-width: 74px;
-      }
-
-      .quantity-input {
-        width: 46px;
-        min-width: 46px;
-      }
-
-      .sum-area {
-        width: 105px;
-        min-width: 105px;
-      }
-
-      .sum {
-        width: 86px;
-        min-width: 86px;
-
-        font-size: 13px;
-      }
-
-      .ai-result-item {
-        grid-template-columns:
-          minmax(0, 1fr)
-          70px
-          75px;
-      }
-    }
-
-    @media (max-width: 570px) {
-
-      .page {
-        width:
-          calc(100% - 10px);
-
-        padding-top: 72px;
-      }
-
-      .site-title {
-        margin-bottom: 22px;
-
-        font-size:
-          clamp(
-            35px,
-            12vw,
-            54px
-          );
-      }
-
-      .ai-button {
-        width: 100%;
-        min-width: 0;
-      }
-
-      .seller {
-        padding: 9px;
-      }
-
-      .seller-header {
-        padding: 11px;
-      }
-
-      .seller-name {
-        font-size: 22px;
-      }
-
-      .product-card {
-        grid-template-columns:
-          52px
-          minmax(0, 1fr)
-          58px
-          78px;
-
-        gap: 7px;
-
-        padding: 7px;
-      }
-
-      .product-icon {
-        width: 52px;
-        height: 52px;
-      }
-
-      .product-name {
-        font-size: 14px;
-      }
-
-      .product-price {
-        margin-left: 8px;
-
-        font-size: 10px;
-      }
-
-      .quantity-area {
-        width: 58px;
-        min-width: 58px;
-      }
-
-      .quantity-input {
-        width: 42px;
-        min-width: 42px;
-
-        padding:
-          6px
-          5px;
-      }
-
-      .sum-area {
-        width: 78px;
-        min-width: 78px;
-      }
-
-      .sum {
-        width: 66px;
-        min-width: 66px;
-
-        font-size: 10px;
-      }
-
-      .clear-button {
-        right: 10px;
-        bottom: 10px;
-
-        padding:
-          10px
-          12px;
-
-        font-size: 12px;
-      }
-
-      .ai-modal {
-        padding: 14px;
-      }
-
-      .ai-modal-title {
-        font-size: 20px;
-      }
-
-      .ai-dropzone {
-        min-height: 190px;
-
-        padding: 20px;
-      }
-
-      .ai-result-item {
-        grid-template-columns:
-          minmax(0, 1fr)
-          55px;
-
-        gap: 7px;
-      }
-
-      .ai-result-confidence {
-        grid-column: 1 / -1;
-
-        text-align: left;
-      }
-
-      .ai-actions {
-        flex-direction: column;
-      }
-
-      .ai-total-value {
-        font-size: 25px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>БУРМАЛДа))0</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&family=Exo+2:wght@700;800;900&family=Russo+One&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --purple:#7f5dba;
+  --purple-dark:#4e3974;
+  --purple-soft:#6c4fa0;
+  --cyan:#83dce6;
+  --cyan-soft:#64c6d0;
+  --bg:#09070d;
+  --panel:#100c18;
+  --card:#15101e;
+  --card2:#1a1425;
+  --border:rgba(131,220,230,.5);
+  --border-strong:rgba(131,220,230,.85);
+  --text:#f3f8fa;
+  --muted:#a7adb8;
+  --danger:#ef6d7a;
+  --success:#7ce2bd;
+  --shadow:0 0 0 1px rgba(127,93,186,.18),0 10px 35px rgba(0,0,0,.3);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(127,93,186,.13),transparent 30%),
+    linear-gradient(180deg,#09070d 0%,#0b0810 100%);
+  color:var(--text);
+}
+
+body{
+  font-family:"Cairo",sans-serif;
+  padding:24px;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.page{
+  width:min(1800px,100%);
+  margin:0 auto;
+}
+
+.topbar{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:18px;
+}
+
+.brand-wrap{
+  padding-left:58px;
+}
+
+.brand{
+  margin:0;
+  font-family:"Russo One",sans-serif;
+  font-size:clamp(32px,4vw,52px);
+  line-height:1;
+  color:var(--cyan);
+  text-shadow:
+    0 0 8px rgba(131,220,230,.35),
+    0 0 28px rgba(131,220,230,.12);
+}
+
+.subtitle{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:15px;
+  font-weight:800;
+}
+
+.top-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.top-button{
+  min-height:46px;
+  padding:0 16px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:var(--cyan);
+  background:linear-gradient(180deg,#171021,#120d19);
+  box-shadow:var(--shadow);
+  font-weight:900;
+  transition:.15s ease;
+}
+
+.top-button:hover{
+  border-color:var(--border-strong);
+  transform:translateY(-1px);
+}
+
+.top-button.ai{
+  background:linear-gradient(180deg,#6e51a3,#4f3977);
+  color:white;
+  border-color:rgba(131,220,230,.65);
+}
+
+.search-row{
+  display:flex;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.search-wrap{
+  position:relative;
+  flex:1;
+}
+
+.search{
+  width:100%;
+  height:50px;
+  padding:0 16px 0 46px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  outline:none;
+  background:#0f0b15;
+  color:var(--text);
+  font-size:16px;
+  font-weight:800;
+}
+
+.search:focus{
+  border-color:var(--border-strong);
+  box-shadow:0 0 0 3px rgba(131,220,230,.08);
+}
+
+.search-icon{
+  position:absolute;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--cyan);
+  font-size:20px;
+  pointer-events:none;
+}
+
+.status{
+  padding:9px 12px;
+  border:1px solid rgba(131,220,230,.15);
+  border-radius:10px;
+  background:rgba(20,14,29,.7);
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+}
+
+.columns{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(410px,1fr));
+  gap:16px;
+  align-items:start;
+}
+
+.seller{
+  min-width:0;
+  background:linear-gradient(180deg,#130d1b,#0d0912);
+  border:1px solid rgba(131,220,230,.28);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.seller-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:14px 16px;
+  background:linear-gradient(180deg,rgba(127,93,186,.22),rgba(127,93,186,.08));
+  border-bottom:1px solid rgba(131,220,230,.2);
+}
+
+.seller-name{
+  color:var(--cyan);
+  font-family:"Russo One",sans-serif;
+  font-size:20px;
+  text-shadow:0 0 10px rgba(131,220,230,.16);
+}
+
+.sold-button{
+  min-height:38px;
+  padding:0 14px;
+  border-radius:10px;
+  border:1px solid rgba(131,220,230,.65);
+  background:linear-gradient(180deg,#7f5dba,#62478e);
+  color:white;
+  font-size:14px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.sold-button.saved{
+  background:linear-gradient(180deg,#397d69,#2b5e50);
+  border-color:rgba(124,226,189,.65);
+}
+
+.seller-body{
+  padding:10px;
+}
+
+.product-card{
+  display:grid;
+  grid-template-columns:60px minmax(180px,1fr) 74px 105px;
+  gap:9px;
+  align-items:center;
+  min-width:0;
+  margin:7px 0;
+  padding:10px;
+  border:1px solid rgba(131,220,230,.12);
+  border-radius:13px;
+  background:linear-gradient(180deg,#17111f,#120d18);
+  transition:.15s ease;
+}
+
+.product-card:hover{
+  border-color:rgba(131,220,230,.28);
+}
+
+.product-card.has-quantity{
+  border-color:rgba(127,93,186,.75);
+  box-shadow:
+    0 0 0 1px rgba(127,93,186,.08),
+    0 0 22px rgba(127,93,186,.07);
+}
+
+.product-icon-wrap{
+  width:50px;
+  height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(131,220,230,.18);
+  border-radius:11px;
+  background:#0d0a12;
+  overflow:hidden;
+  flex:none;
+}
+
+.product-icon{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  display:block;
+}
+
+.product-info{
+  min-width:0;
+  overflow:visible;
+}
+
+.product-name{
+  color:#eefbfc;
+  font-family:"Exo 2",sans-serif;
+  font-size:16px;
+  font-weight:900;
+  line-height:1.1;
+  overflow-wrap:anywhere;
+}
+
+.product-price{
+  margin-top:5px;
+  margin-left:10px;
+  color:var(--cyan);
+  font-family:"Cairo",sans-serif;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.quantity-area{
+  width:74px;
+  min-width:74px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:visible;
+}
+
+.quantity-input{
+  width:44px;
+  min-width:44px;
+  max-width:none;
+  padding:7px 4px;
+  border:1px solid rgba(131,220,230,.4);
+  border-radius:9px;
+  background:#0d0912;
+  color:var(--cyan);
+  text-align:center;
+  outline:none;
+  font-weight:900;
+  font-size:15px;
+  flex:0 0 auto;
+}
+
+.quantity-input:focus{
+  border-color:var(--border-strong);
+  box-shadow:0 0 0 3px rgba(131,220,230,.08);
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button{
+  -webkit-appearance:none;
+  appearance:none;
+  margin:0;
+}
+
+.quantity-input{
+  -moz-appearance:textfield;
+  appearance:textfield;
+}
+
+.sum-area{
+  width:105px;
+  min-width:105px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:visible;
+}
+
+.sum{
+  width:84px;
+  min-width:84px;
+  color:#d9bdff;
+  font-family:"Cairo",sans-serif;
+  font-size:14px;
+  font-weight:900;
+  text-align:center;
+  white-space:nowrap;
+  overflow:visible;
+}
+
+.seller-total{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:10px;
+  padding:13px 14px;
+  border-top:1px solid rgba(131,220,230,.15);
+  background:rgba(127,93,186,.08);
+}
+
+.seller-total-label{
+  color:var(--muted);
+  font-size:14px;
+  font-weight:900;
+}
+
+.seller-total-value{
+  color:var(--cyan);
+  font-size:19px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.empty{
+  padding:22px 10px;
+  color:var(--muted);
+  text-align:center;
+  font-weight:800;
+}
+
+.bottom-total{
+  position:sticky;
+  bottom:14px;
+  z-index:20;
+  margin-top:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px 18px;
+  border:1px solid rgba(131,220,230,.35);
+  border-radius:16px;
+  background:linear-gradient(180deg,rgba(44,27,68,.95),rgba(23,14,35,.96));
+  box-shadow:0 18px 45px rgba(0,0,0,.35);
+  backdrop-filter:blur(10px);
+}
+
+.bottom-total-label{
+  color:white;
+  font-family:"Russo One",sans-serif;
+  font-size:18px;
+}
+
+.bottom-total-value{
+  color:var(--cyan);
+  font-size:25px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.clear-button{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:40;
+  min-height:46px;
+  padding:0 16px;
+  border:1px solid rgba(131,220,230,.55);
+  border-radius:12px;
+  background:linear-gradient(180deg,#211431,#150d1e);
+  color:var(--cyan);
+  box-shadow:0 12px 35px rgba(0,0,0,.45);
+  font-weight:900;
+}
+
+.clear-button:hover{
+  border-color:var(--border-strong);
+}
+
+.menu-button{
+  position:fixed;
+  left:14px;
+  top:14px;
+  z-index:70;
+  width:46px;
+  height:46px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(131,220,230,.52);
+  border-radius:12px;
+  background:linear-gradient(180deg,#1c1229,#110a18);
+  color:var(--cyan);
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
+  font-size:22px;
+}
+
+.menu-button.hidden{
+  display:none;
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:60;
+  display:none;
+  background:rgba(0,0,0,.68);
+  backdrop-filter:blur(5px);
+}
+
+.overlay.open{
+  display:block;
+}
+
+.side-panel{
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:min(520px,92vw);
+  padding:22px;
+  background:linear-gradient(180deg,#100a16,#0c0811);
+  border-right:1px solid rgba(131,220,230,.2);
+  overflow:auto;
+}
+
+.panel-title{
+  margin:0;
+  color:var(--cyan);
+  font-family:"Russo One",sans-serif;
+  font-size:24px;
+}
+
+.panel-subtitle{
+  margin:8px 0 18px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+}
+
+.close-panel{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:40px;
+  height:40px;
+  border:1px solid rgba(131,220,230,.35);
+  border-radius:10px;
+  background:#130d1b;
+  color:var(--cyan);
+  font-size:20px;
+}
+
+.history-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.history-item{
+  border:1px solid rgba(131,220,230,.18);
+  border-radius:14px;
+  padding:13px;
+  background:#130d1b;
+}
+
+.history-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.history-seller{
+  color:var(--cyan);
+  font-weight:900;
+}
+
+.history-date{
+  color:var(--muted);
+  font-size:12px;
+  white-space:nowrap;
+}
+
+.history-total{
+  margin-top:6px;
+  color:white;
+  font-size:18px;
+  font-weight:900;
+}
+
+.history-products{
+  margin-top:8px;
+  color:#c7ced5;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.history-actions{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+.history-actions button{
+  min-height:36px;
+  padding:0 11px;
+  border-radius:9px;
+  border:1px solid rgba(131,220,230,.25);
+  background:#18101f;
+  color:var(--cyan);
+  font-weight:900;
+}
+
+.history-actions .delete{
+  color:#ff9eaa;
+  border-color:rgba(239,109,122,.3);
+}
+
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:80;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(7px);
+}
+
+.modal-backdrop.open{
+  display:flex;
+}
+
+.ai-modal{
+  width:min(820px,100%);
+  max-height:calc(100vh - 40px);
+  overflow:auto;
+  border:1px solid rgba(131,220,230,.34);
+  border-radius:18px;
+  background:linear-gradient(180deg,#130d1b,#0c0811);
+  box-shadow:0 25px 70px rgba(0,0,0,.55);
+}
+
+.modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px 18px;
+  border-bottom:1px solid rgba(131,220,230,.16);
+}
+
+.modal-title{
+  margin:0;
+  color:var(--cyan);
+  font-family:"Russo One",sans-serif;
+  font-size:22px;
+}
+
+.close-modal{
+  width:40px;
+  height:40px;
+  border:1px solid rgba(131,220,230,.3);
+  border-radius:10px;
+  background:#160e1e;
+  color:var(--cyan);
+  font-size:20px;
+}
+
+.ai-body{
+  padding:18px;
+}
+
+.paste-zone{
+  min-height:190px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:18px;
+  border:1.5px dashed rgba(131,220,230,.38);
+  border-radius:16px;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(127,93,186,.12),transparent 45%),
+    #0f0a15;
+  text-align:center;
+  outline:none;
+}
+
+.paste-zone.focused{
+  border-color:var(--cyan);
+  box-shadow:0 0 0 3px rgba(131,220,230,.08);
+}
+
+.paste-main{
+  color:white;
+  font-size:19px;
+  font-weight:900;
+}
+
+.paste-hint{
+  color:var(--muted);
+  font-size:13px;
+  max-width:550px;
+}
+
+.ai-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:14px;
+}
+
+.ai-action{
+  min-height:42px;
+  padding:0 14px;
+  border:1px solid rgba(131,220,230,.34);
+  border-radius:10px;
+  background:#181020;
+  color:var(--cyan);
+  font-weight:900;
+}
+
+.ai-action.primary{
+  background:linear-gradient(180deg,#7f5dba,#60458b);
+  color:white;
+  border-color:rgba(131,220,230,.55);
+}
+
+.ai-action:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.file-label{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:0 14px;
+  border:1px solid rgba(131,220,230,.34);
+  border-radius:10px;
+  background:#181020;
+  color:var(--cyan);
+  font-weight:900;
+  cursor:pointer;
+}
+
+#imageFile{
+  display:none;
+}
+
+.image-preview{
+  display:none;
+  margin-top:16px;
+  padding:10px;
+  border:1px solid rgba(131,220,230,.2);
+  border-radius:14px;
+  background:#0c0811;
+}
+
+.image-preview.open{
+  display:block;
+}
+
+.image-preview img{
+  display:block;
+  width:100%;
+  max-height:390px;
+  object-fit:contain;
+  border-radius:10px;
+  background:#06050a;
+}
+
+.preview-caption{
+  margin-top:8px;
+  color:var(--muted);
+  text-align:center;
+  font-size:12px;
+  font-weight:800;
+}
+
+.ai-status{
+  margin-top:14px;
+  min-height:22px;
+  color:var(--muted);
+  text-align:center;
+  font-size:13px;
+  font-weight:900;
+}
+
+.recognition-result{
+  display:none;
+  margin-top:16px;
+}
+
+.recognition-result.open{
+  display:block;
+}
+
+.result-title{
+  color:white;
+  font-size:17px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+
+.recognition-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.recognition-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 90px 95px;
+  gap:8px;
+  align-items:center;
+  padding:10px 12px;
+  border:1px solid rgba(131,220,230,.15);
+  border-radius:11px;
+  background:#140e1c;
+}
+
+.recognition-name{
+  color:var(--cyan);
+  font-family:"Exo 2",sans-serif;
+  font-weight:900;
+  overflow-wrap:anywhere;
+}
+
+.recognition-qty,
+.recognition-confidence{
+  text-align:center;
+  color:white;
+  font-weight:900;
+}
+
+.recognition-confidence{
+  color:#d7c1fa;
+}
+
+.result-summary{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid rgba(127,93,186,.35);
+  border-radius:11px;
+  background:rgba(127,93,186,.08);
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+}
+
+.modal-footer{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+
+.footer-button{
+  min-height:42px;
+  padding:0 15px;
+  border:1px solid rgba(131,220,230,.34);
+  border-radius:10px;
+  background:#17101f;
+  color:var(--cyan);
+  font-weight:900;
+}
+
+.footer-button.apply{
+  background:linear-gradient(180deg,#7f5dba,#60458b);
+  color:white;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:20px;
+  z-index:120;
+  transform:translateX(-50%) translateY(12px);
+  opacity:0;
+  pointer-events:none;
+  padding:11px 16px;
+  border:1px solid rgba(131,220,230,.38);
+  border-radius:11px;
+  background:#140d1d;
+  color:var(--cyan);
+  font-weight:900;
+  transition:.2s ease;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+@media(max-width:1150px){
+  .columns{
+    grid-template-columns:1fr;
+  }
+
+  .product-card{
+    grid-template-columns:60px minmax(180px,1fr) 74px 105px;
+  }
+}
+
+@media(max-width:650px){
+  body{
+    padding:14px;
+  }
+
+  .brand-wrap{
+    padding-left:52px;
+  }
+
+  .topbar{
+    align-items:flex-start;
+  }
+
+  .top-actions{
+    width:100%;
+  }
+
+  .top-button{
+    flex:1 1 180px;
+  }
+
+  .product-card{
+    grid-template-columns:54px minmax(150px,1fr) 64px 92px;
+    padding:9px;
+  }
+
+  .product-icon-wrap{
+    width:46px;
+    height:46px;
+  }
+
+  .product-icon{
+    width:38px;
+    height:38px;
+  }
+
+  .quantity-area{
+    width:64px;
+    min-width:64px;
+  }
+
+  .sum-area{
+    width:92px;
+    min-width:92px;
+  }
+
+  .sum{
+    width:76px;
+    min-width:76px;
+    font-size:13px;
+  }
+
+  .recognition-row{
+    grid-template-columns:minmax(0,1fr) 66px 78px;
+  }
+
+  .bottom-total{
+    bottom:10px;
+  }
+
+  .clear-button{
+    position:static;
+    display:block;
+    width:100%;
+    margin-top:10px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- =====================================================
-       MENU
-  ===================================================== -->
+<button id="menuButton" class="menu-button" type="button" aria-label="Открыть меню">☰</button>
 
-  <button
-    class="menu-button"
-    id="menuButton"
-    type="button"
-    aria-label="Открыть меню"
-  >
-    ☰
-  </button>
+<div class="page">
 
+  <div class="topbar">
+    <div class="brand-wrap">
+      <h1 class="brand">БУРМАЛДа))0</h1>
+      <div class="subtitle">Калькулятор товаров</div>
+    </div>
 
-  <!-- =====================================================
-       CLEAR
-  ===================================================== -->
+    <div class="top-actions">
+      <button id="aiButton" class="top-button ai" type="button">🤖 Распознать скриншот</button>
+    </div>
+  </div>
 
-  <button
-    class="clear-button"
-    id="clearAllButton"
-    type="button"
-  >
-    🧹 Очистить все ячейки
-  </button>
-
-
-  <!-- =====================================================
-       AI MODAL
-  ===================================================== -->
-
-  <div
-    class="ai-overlay"
-    id="aiOverlay"
-  >
-
-    <div class="ai-modal">
-
-      <div class="ai-modal-header">
-
-        <div class="ai-modal-title">
-          🤖 Распознавание скриншота
-        </div>
-
-        <button
-          class="ai-close"
-          id="aiCloseButton"
-          type="button"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <label
-        class="ai-dropzone"
-        id="aiDropzone"
-        for="aiFileInput"
-      >
-
-        <div class="ai-dropzone-icon">
-          📷
-        </div>
-
-        <div class="ai-dropzone-title">
-          Загрузи скриншот
-        </div>
-
-        <div class="ai-dropzone-subtitle">
-          PNG / JPG / WEBP · можно перетащить сюда
-        </div>
-
-      </label>
-
-
+  <div class="search-row">
+    <div class="search-wrap">
+      <div class="search-icon">⌕</div>
       <input
-        id="aiFileInput"
-        type="file"
-        accept="image/png,image/jpeg,image/webp"
+        id="search"
+        class="search"
+        type="text"
+        placeholder="Поиск товара..."
+        autocomplete="off"
       >
-
-
-      <div
-        class="ai-status"
-        id="aiStatus"
-        aria-live="polite"
-      ></div>
-
-
-      <div
-        class="ai-results"
-        id="aiResults"
-      ></div>
-
     </div>
-
   </div>
 
+  <div id="status" class="status">Загружаю цены из Google Sheets...</div>
 
-  <!-- =====================================================
-       HISTORY MENU
-  ===================================================== -->
+  <div id="columns" class="columns"></div>
 
-  <div
-    class="menu-overlay"
-    id="menuOverlay"
-  >
+  <div class="bottom-total">
+    <div class="bottom-total-label">Общая сумма</div>
+    <div id="globalTotal" class="bottom-total-value">0 ₽</div>
+  </div>
 
-    <aside class="side-menu">
+  <button id="clearButton" class="clear-button" type="button">🧹 Очистить все ячейки</button>
+</div>
 
-      <div class="menu-top">
+<!-- HISTORY MENU -->
+<div id="overlay" class="overlay">
+  <aside class="side-panel">
+    <button id="closePanel" class="close-panel" type="button">×</button>
 
-        <div class="menu-title">
-          История продаж
+    <h2 class="panel-title">История продаж</h2>
+    <div class="panel-subtitle">
+      Сохранённые операции. Очистка ячеек историю не удаляет.
+    </div>
+
+    <div id="historyList" class="history-list"></div>
+  </aside>
+</div>
+
+<!-- AI MODAL -->
+<div id="aiModal" class="modal-backdrop">
+  <div class="ai-modal">
+
+    <div class="modal-header">
+      <h2 class="modal-title">🤖 Распознавание скриншота</h2>
+      <button id="closeAiModal" class="close-modal" type="button">×</button>
+    </div>
+
+    <div class="ai-body">
+
+      <div id="pasteZone" class="paste-zone" tabindex="0">
+        <div class="paste-main">📋 Вставь скриншот сюда</div>
+        <div class="paste-hint">
+          Нажми <b>Ctrl + V</b>, и изображение из буфера обмена будет загружено автоматически.
+          Также можно выбрать файл.
         </div>
 
+        <div class="ai-actions">
+          <button id="pasteButton" class="ai-action primary" type="button">
+            📋 Вставить из буфера
+          </button>
 
-        <button
-          class="close-menu"
-          id="closeMenuButton"
-          type="button"
-        >
-          ×
-        </button>
+          <label class="file-label" for="imageFile">
+            📁 Выбрать файл
+          </label>
 
+          <input id="imageFile" type="file" accept="image/*">
+        </div>
       </div>
 
+      <div id="imagePreview" class="image-preview">
+        <img id="previewImage" alt="Предпросмотр скриншота">
+        <div id="previewCaption" class="preview-caption">Изображение готово</div>
+      </div>
 
-      <div id="historyContainer"></div>
+      <div id="aiStatus" class="ai-status"></div>
 
+      <div id="recognitionResult" class="recognition-result">
+        <div class="result-title">Распознано:</div>
 
-      <div
-        class="status-message"
-        id="menuStatus"
-      ></div>
+        <div id="recognitionList" class="recognition-list"></div>
 
-    </aside>
+        <div id="resultSummary" class="result-summary"></div>
 
+        <div class="modal-footer">
+          <button id="retryRecognition" class="footer-button" type="button">
+            🔄 Распознать заново
+          </button>
+
+          <button id="applyRecognition" class="footer-button apply" type="button">
+            ✓ Применить
+          </button>
+        </div>
+      </div>
+
+    </div>
   </div>
+</div>
 
+<div id="toast" class="toast"></div>
 
-  <!-- =====================================================
-       MAIN PAGE
-  ===================================================== -->
+<script>
+const API_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8w3Uu6FZ6PFxGP0ZwxPimjVLURIh0pBrYlrdJEP23sUNJU6IRkvBcHHvPTXf3f8bsnO6DLZN3EjEr/pub?output=csv";
 
-  <main class="page">
+const SELLERS = {
+  Logovo: {
+    name: "Логово Хайзенберга",
+    column: 0
+  },
+  Staraptor: {
+    name: "Staraptor",
+    column: 4
+  },
+  WhiteFox: {
+    name: "WhiteFox",
+    column: 8
+  }
+};
 
-    <h1 class="site-title">
-      БУРМАЛДа))0
-    </h1>
+const ICONS = {
+  "Кофе": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/prl2.png",
+  "Помидор": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/6rpy.png",
+  "Молоко": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/kl9v.png",
+  "Гипс": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/kl70.png",
+  "Железо": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/jl77.png",
+  "Реагенты": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/y7po.png",
+  "Аммиак": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/40vn.png",
+  "Остатки приборов шепота": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/55olq.png",
+  "Отличная тушенка": "https://cdn3.stalzone.wiki/exbo_item_parser/consumables/food/j5456.png",
 
+  "Газовый баллон": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/03p1.png",
+  "Перчатки": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/wopo.png",
+  "Чеснок": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/7rp7.png",
+  "Поташ": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/np0w.png",
 
-    <div class="ai-button-wrap">
+  "Мясо шавки": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/dq0n.png",
+  "Мясо кабана": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/2d76.png",
+  "Мясо хрюши": "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/vrpd.png"
+};
 
-      <button
-        class="ai-button"
-        id="openAiButton"
-        type="button"
-      >
-        🤖 Распознать скриншот
-      </button>
+const SELLER_ITEMS = {
+  Logovo: [
+    "Кофе",
+    "Помидор",
+    "Молоко",
+    "Гипс",
+    "Железо",
+    "Реагенты",
+    "Аммиак",
+    "Остатки приборов шепота",
+    "Отличная тушенка"
+  ],
+  Staraptor: [
+    "Газовый баллон",
+    "Перчатки",
+    "Чеснок",
+    "Поташ"
+  ],
+  WhiteFox: [
+    "Мясо шавки",
+    "Мясо кабана",
+    "Мясо хрюши"
+  ]
+};
 
-    </div>
+const ALLOWED_AI_ITEMS = [
+  "Кофе",
+  "Помидор",
+  "Молоко",
+  "Гипс",
+  "Железо",
+  "Реагенты",
+  "Аммиак",
+  "Остатки приборов шепота",
+  "Отличная тушенка",
+  "Газовый баллон",
+  "Перчатки",
+  "Чеснок",
+  "Поташ",
+  "Мясо шавки",
+  "Мясо кабана",
+  "Мясо хрюши"
+];
 
+const STORAGE_QUANTITIES = "burmalda_quantities_v3";
+const STORAGE_HISTORY = "burmalda_history_v3";
 
-    <div id="app">
+let prices = {};
+let quantities = loadQuantities();
+let history = loadHistory();
 
-      <div class="loading">
-        Загрузка товаров...
-      </div>
+let currentImageDataUrl = "";
+let currentRecognition = [];
 
-    </div>
+function normalizeName(name) {
+  let result = String(name || "")
+    .replace(/^\uFEFF/, "")
+    .trim();
 
-  </main>
+  result = result.replace(/^\s*\d+(?:[.,]\d+)?\s+/, "");
+  result = result.replace(/^Коффе$/i, "Кофе");
 
+  return result;
+}
 
-  <script>
+function toNumber(value) {
+  const cleaned = String(value ?? "")
+    .replace(/[\s\u00A0]/g, "")
+    .replace(",", ".");
 
-    /* =====================================================
-       GOOGLE SHEETS
-    ===================================================== */
+  const n = Number(cleaned);
+  return Number.isFinite(n) ? n : 0;
+}
 
-    const SHEET_URL =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8w3Uu6FZ6PFxGP0ZwxPimjVLURIh0pBrYlrdJEP23sUNJU6IRkvBcHHvPTXf3f8bsnO6DLZN3EjEr/pub?output=csv";
+function formatMoney(value) {
+  return Math.round(Number(value) || 0).toLocaleString("ru-RU") + " ₽";
+}
 
+function loadQuantities() {
+  try {
+    const raw = localStorage.getItem(STORAGE_QUANTITIES);
+    const parsed = raw ? JSON.parse(raw) : {};
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
 
-    const QUANTITY_STORAGE_KEY =
-      "burmalda_quantities_ai_v1";
+function saveQuantities() {
+  localStorage.setItem(
+    STORAGE_QUANTITIES,
+    JSON.stringify(quantities)
+  );
+}
 
+function loadHistory() {
+  try {
+    const raw = localStorage.getItem(STORAGE_HISTORY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
 
-    const HISTORY_STORAGE_KEY =
-      "burmalda_history_ai_v1";
+function saveHistory() {
+  localStorage.setItem(
+    STORAGE_HISTORY,
+    JSON.stringify(history)
+  );
+}
 
+function makeQuantityKey(sellerId, productName) {
+  return sellerId + "::" + productName;
+}
 
-    /* =====================================================
-       ICONS
-    ===================================================== */
+function getQuantity(sellerId, productName) {
+  const key = makeQuantityKey(sellerId, productName);
+  const n = Number(quantities[key]);
+  return Number.isFinite(n) && n >= 0 ? Math.floor(n) : 0;
+}
 
-    const SELLER_ICONS = {
+function setQuantity(sellerId, productName, value) {
+  const key = makeQuantityKey(sellerId, productName);
+  const n = Math.max(0, Math.floor(Number(value) || 0));
 
-      "Логово Хайзенберга": [
+  quantities[key] = n;
+  saveQuantities();
+}
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/prl2.png",
+function resizeQuantityInput(input) {
+  const value = String(input.value || "0");
+  const width = Math.max(44, value.length * 14 + 16);
+  input.style.width = width + "px";
+}
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/6rpy.png",
+function resizeSum(sumElement, value) {
+  const text = formatMoney(value);
+  const width = Math.max(84, Math.min(140, text.length * 9 + 16));
+  sumElement.style.width = width + "px";
+}
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/kl9v.png",
+function parseCSV(text) {
+  const rows = [];
+  let row = [];
+  let cell = "";
+  let quote = false;
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/kl70.png",
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    const n = text[i + 1];
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/jl77.png",
+    if (c === '"' && quote && n === '"') {
+      cell += '"';
+      i++;
+      continue;
+    }
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/y7po.png",
+    if (c === '"') {
+      quote = !quote;
+      continue;
+    }
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/40vn.png",
+    if (c === "," && !quote) {
+      row.push(cell.trim());
+      cell = "";
+      continue;
+    }
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/55olq.png",
+    if ((c === "\n" || c === "\r") && !quote) {
+      if (c === "\r" && n === "\n") {
+        i++;
+      }
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/consumables/food/j5456.png"
+      row.push(cell.trim());
+      cell = "";
 
-      ],
+      if (row.some(v => v !== "")) {
+        rows.push(row);
+      }
 
+      row = [];
+      continue;
+    }
 
-      "Staraptor": [
+    cell += c;
+  }
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/03p1.png",
+  if (cell !== "" || row.length) {
+    row.push(cell.trim());
+    rows.push(row);
+  }
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/wopo.png",
+  return rows;
+}
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/7rp7.png",
+function parseSellerProducts(rows, nameColumn, priceColumn) {
+  const result = [];
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/np0w.png"
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i] || [];
 
-      ],
+    const rawName = row[nameColumn] || "";
+    const rawPrice = row[priceColumn] || "";
 
+    const name = normalizeName(rawName);
 
-      "WhiteFox": [
+    if (!name) continue;
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/dq0n.png",
+    // Исключаем технические и числовые строки
+    if (/^\d+(?:[.,]\d+)?$/.test(name)) continue;
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/2d76.png",
+    const price = toNumber(rawPrice);
 
-        "https://cdn3.stalzone.wiki/exbo_item_parser/other/hideout/vrpd.png"
+    result.push({
+      name,
+      price
+    });
+  }
 
-      ]
+  return result;
+}
 
+async function loadPrices() {
+  const status = document.getElementById("status");
+
+  try {
+    status.textContent = "Загружаю цены из Google Sheets...";
+
+    const response = await fetch(API_URL, {
+      cache: "no-store"
+    });
+
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
+
+    const csv = await response.text();
+    const rows = parseCSV(csv);
+
+    prices = {};
+
+    const sellerConfigs = [
+      {
+        id: "Logovo",
+        nameColumn: 0,
+        priceColumn: 1
+      },
+      {
+        id: "Staraptor",
+        nameColumn: 4,
+        priceColumn: 5
+      },
+      {
+        id: "WhiteFox",
+        nameColumn: 8,
+        priceColumn: 9
+      }
+    ];
+
+    for (const config of sellerConfigs) {
+      const sellerProducts = parseSellerProducts(
+        rows,
+        config.nameColumn,
+        config.priceColumn
+      );
+
+      for (const product of sellerProducts) {
+        prices[makeQuantityKey(config.id, product.name)] = product.price;
+      }
+    }
+
+    // У WhiteFox названия "Мясо" из таблицы различаются неинформативно,
+    // поэтому используем гарантированные цены из актуального списка.
+    prices[makeQuantityKey("WhiteFox", "Мясо шавки")] = 3000;
+    prices[makeQuantityKey("WhiteFox", "Мясо кабана")] = 3000;
+    prices[makeQuantityKey("WhiteFox", "Мясо хрюши")] = 3000;
+
+    // Нормализация известных товаров из таблицы
+    prices[makeQuantityKey("Logovo", "Кофе")] =
+      prices[makeQuantityKey("Logovo", "Коффе")] ??
+      prices[makeQuantityKey("Logovo", "Кофе")] ??
+      700;
+
+    renderAll();
+
+    status.textContent = "Цены загружены";
+  } catch (error) {
+    console.error(error);
+
+    // Резервные цены, чтобы интерфейс не ломался
+    prices = {
+      [makeQuantityKey("Logovo","Кофе")]:700,
+      [makeQuantityKey("Logovo","Помидор")]:1600,
+      [makeQuantityKey("Logovo","Молоко")]:70,
+      [makeQuantityKey("Logovo","Гипс")]:100,
+      [makeQuantityKey("Logovo","Железо")]:590,
+      [makeQuantityKey("Logovo","Реагенты")]:600,
+      [makeQuantityKey("Logovo","Аммиак")]:12700,
+      [makeQuantityKey("Logovo","Остатки приборов шепота")]:24500,
+      [makeQuantityKey("Logovo","Отличная тушенка")]:1100,
+
+      [makeQuantityKey("Staraptor","Газовый баллон")]:5730,
+      [makeQuantityKey("Staraptor","Перчатки")]:500,
+      [makeQuantityKey("Staraptor","Чеснок")]:500,
+      [makeQuantityKey("Staraptor","Поташ")]:500,
+
+      [makeQuantityKey("WhiteFox","Мясо шавки")]:3000,
+      [makeQuantityKey("WhiteFox","Мясо кабана")]:3000,
+      [makeQuantityKey("WhiteFox","Мясо хрюши")]:3000
     };
 
+    renderAll();
 
-    /* =====================================================
-       STATE
-    ===================================================== */
+    status.textContent =
+      "Не удалось обновить цены. Используются сохранённые резервные цены.";
+  }
+}
 
-    const state = {
+function getPrice(sellerId, productName) {
+  return Number(
+    prices[makeQuantityKey(sellerId, productName)] ?? 0
+  );
+}
 
-      sellers: [],
+function getProductSum(sellerId, productName) {
+  return getQuantity(sellerId, productName) *
+    getPrice(sellerId, productName);
+}
 
-      history:
-        loadHistory(),
+function calculateSellerTotal(sellerId) {
+  return SELLER_ITEMS[sellerId].reduce(
+    (sum, productName) =>
+      sum + getProductSum(sellerId, productName),
+    0
+  );
+}
 
-      aiResults: [],
+function calculateGlobalTotal() {
+  return Object.keys(SELLER_ITEMS).reduce(
+    (total, sellerId) =>
+      total + calculateSellerTotal(sellerId),
+    0
+  );
+}
 
-      aiTotal: 0,
+function matchesSearch(name) {
+  const q = document
+    .getElementById("search")
+    .value
+    .trim()
+    .toLowerCase();
 
-      aiImageFile: null
+  return !q || name.toLowerCase().includes(q);
+}
 
+function renderAll() {
+  const container = document.getElementById("columns");
+  container.innerHTML = "";
+
+  for (const sellerId of ["Logovo", "Staraptor", "WhiteFox"]) {
+    container.appendChild(renderSeller(sellerId));
+  }
+
+  updateGlobalTotal();
+}
+
+function renderSeller(sellerId) {
+  const seller = document.createElement("section");
+  seller.className = "seller";
+
+  const header = document.createElement("div");
+  header.className = "seller-header";
+
+  const title = document.createElement("div");
+  title.className = "seller-name";
+  title.textContent = SELLERS[sellerId].name;
+
+  const soldButton = document.createElement("button");
+  soldButton.type = "button";
+  soldButton.className = "sold-button";
+  soldButton.textContent = "Продал";
+
+  soldButton.addEventListener("click", () => {
+    saveSale(sellerId, soldButton);
+  });
+
+  header.appendChild(title);
+  header.appendChild(soldButton);
+
+  const body = document.createElement("div");
+  body.className = "seller-body";
+
+  const visibleProducts = SELLER_ITEMS[sellerId].filter(matchesSearch);
+
+  if (!visibleProducts.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "Ничего не найдено";
+    body.appendChild(empty);
+  } else {
+    for (const productName of visibleProducts) {
+      body.appendChild(
+        renderProductCard(sellerId, productName)
+      );
+    }
+  }
+
+  const totalBox = document.createElement("div");
+  totalBox.className = "seller-total";
+
+  const totalLabel = document.createElement("div");
+  totalLabel.className = "seller-total-label";
+  totalLabel.textContent = "Итого";
+
+  const totalValue = document.createElement("div");
+  totalValue.className = "seller-total-value";
+  totalValue.textContent = formatMoney(
+    calculateSellerTotal(sellerId)
+  );
+
+  totalBox.appendChild(totalLabel);
+  totalBox.appendChild(totalValue);
+
+  body.appendChild(totalBox);
+
+  seller.appendChild(header);
+  seller.appendChild(body);
+
+  return seller;
+}
+
+function renderProductCard(sellerId, productName) {
+  const card = document.createElement("div");
+  card.className = "product-card";
+
+  const quantity = getQuantity(sellerId, productName);
+  if (quantity > 0) {
+    card.classList.add("has-quantity");
+  }
+
+  const iconWrap = document.createElement("div");
+  iconWrap.className = "product-icon-wrap";
+
+  const icon = document.createElement("img");
+  icon.className = "product-icon";
+  icon.alt = productName;
+  icon.src = ICONS[productName] || "";
+  icon.loading = "lazy";
+
+  iconWrap.appendChild(icon);
+
+  const info = document.createElement("div");
+  info.className = "product-info";
+
+  const name = document.createElement("div");
+  name.className = "product-name";
+  name.textContent = productName;
+
+  const price = document.createElement("div");
+  price.className = "product-price";
+  price.textContent =
+    "цена: " + formatMoney(getPrice(sellerId, productName)) + " / шт";
+
+  info.appendChild(name);
+  info.appendChild(price);
+
+  const quantityArea = document.createElement("div");
+  quantityArea.className = "quantity-area";
+
+  const input = document.createElement("input");
+  input.className = "quantity-input";
+  input.type = "number";
+  input.min = "0";
+  input.step = "1";
+  input.value = String(quantity);
+  input.inputMode = "numeric";
+  input.setAttribute(
+    "aria-label",
+    "Количество: " + productName
+  );
+
+  resizeQuantityInput(input);
+
+  const updateFromInput = () => {
+    let value = Number(input.value);
+
+    if (!Number.isFinite(value) || value < 0) {
+      value = 0;
+    }
+
+    value = Math.floor(value);
+
+    input.value = String(value);
+
+    setQuantity(sellerId, productName, value);
+
+    resizeQuantityInput(input);
+
+    updateProductVisual(card, sum, sellerId, productName);
+    updateSellerAndGlobalTotals();
+  };
+
+  input.addEventListener("input", updateFromInput);
+
+  input.addEventListener("change", updateFromInput);
+
+  quantityArea.appendChild(input);
+
+  const sumArea = document.createElement("div");
+  sumArea.className = "sum-area";
+
+  const sum = document.createElement("div");
+  sum.className = "sum";
+
+  const productSum = getProductSum(
+    sellerId,
+    productName
+  );
+
+  sum.textContent = formatMoney(productSum);
+  resizeSum(sum, productSum);
+
+  sumArea.appendChild(sum);
+
+  card.appendChild(iconWrap);
+  card.appendChild(info);
+  card.appendChild(quantityArea);
+  card.appendChild(sumArea);
+
+  return card;
+}
+
+function updateProductVisual(card, sum, sellerId, productName) {
+  const quantity = getQuantity(sellerId, productName);
+  const value = getProductSum(sellerId, productName);
+
+  card.classList.toggle(
+    "has-quantity",
+    quantity > 0
+  );
+
+  sum.textContent = formatMoney(value);
+  resizeSum(sum, value);
+}
+
+function updateSellerAndGlobalTotals() {
+  const search = document.getElementById("search");
+  const oldValue = search.value;
+
+  renderAll();
+
+  search.value = oldValue;
+  updateGlobalTotal();
+}
+
+function updateGlobalTotal() {
+  document.getElementById("globalTotal").textContent =
+    formatMoney(calculateGlobalTotal());
+}
+
+function saveSale(sellerId, button) {
+  const items = [];
+
+  for (const productName of SELLER_ITEMS[sellerId]) {
+    const quantity = getQuantity(
+      sellerId,
+      productName
+    );
+
+    if (quantity > 0) {
+      items.push({
+        name: productName,
+        quantity,
+        price: getPrice(sellerId, productName),
+        sum: quantity * getPrice(sellerId, productName)
+      });
+    }
+  }
+
+  const total = items.reduce(
+    (sum, item) => sum + item.sum,
+    0
+  );
+
+  const entry = {
+    id:
+      Date.now().toString(36) +
+      Math.random().toString(36).slice(2, 8),
+    sellerId,
+    sellerName: SELLERS[sellerId].name,
+    date: new Date().toISOString(),
+    total,
+    items
+  };
+
+  history.unshift(entry);
+
+  if (history.length > 200) {
+    history = history.slice(0, 200);
+  }
+
+  saveHistory();
+  renderHistory();
+
+  button.classList.add("saved");
+  button.textContent = "✓ Сохранено";
+
+  setTimeout(() => {
+    button.classList.remove("saved");
+    button.textContent = "Продал";
+  }, 1200);
+}
+
+function renderHistory() {
+  const list = document.getElementById("historyList");
+  list.innerHTML = "";
+
+  if (!history.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "История пока пуста";
+    list.appendChild(empty);
+    return;
+  }
+
+  for (const entry of history) {
+    const item = document.createElement("div");
+    item.className = "history-item";
+
+    const top = document.createElement("div");
+    top.className = "history-top";
+
+    const seller = document.createElement("div");
+    seller.className = "history-seller";
+    seller.textContent = entry.sellerName;
+
+    const date = document.createElement("div");
+    date.className = "history-date";
+
+    const dateObject = new Date(entry.date);
+
+    date.textContent =
+      dateObject.toLocaleDateString("ru-RU") +
+      " " +
+      dateObject.toLocaleTimeString("ru-RU", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+    top.appendChild(seller);
+    top.appendChild(date);
+
+    const total = document.createElement("div");
+    total.className = "history-total";
+    total.textContent = formatMoney(entry.total);
+
+    const productsBox = document.createElement("div");
+    productsBox.className = "history-products";
+
+    if (entry.items?.length) {
+      productsBox.textContent = entry.items
+        .map(
+          item =>
+            item.name +
+            " × " +
+            item.quantity
+        )
+        .join(" • ");
+    } else {
+      productsBox.textContent = "Продано с нулевым количеством";
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "history-actions";
+
+    const restoreButton = document.createElement("button");
+    restoreButton.type = "button";
+    restoreButton.textContent = "↩ Восстановить";
+
+    restoreButton.addEventListener("click", () => {
+      restoreSale(entry);
+    });
+
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "delete";
+    deleteButton.textContent = "🗑 Удалить";
+
+    deleteButton.addEventListener("click", () => {
+      deleteHistoryEntry(entry.id);
+    });
+
+    actions.appendChild(restoreButton);
+    actions.appendChild(deleteButton);
+
+    item.appendChild(top);
+    item.appendChild(total);
+    item.appendChild(productsBox);
+    item.appendChild(actions);
+
+    list.appendChild(item);
+  }
+}
+
+function restoreSale(entry) {
+  if (!entry.items) return;
+
+  for (const item of entry.items) {
+    const key = makeQuantityKey(
+      entry.sellerId,
+      item.name
+    );
+
+    quantities[key] = Math.max(
+      0,
+      Math.floor(Number(item.quantity) || 0)
+    );
+  }
+
+  saveQuantities();
+  renderAll();
+
+  showToast("Продажа восстановлена");
+}
+
+function deleteHistoryEntry(id) {
+  history = history.filter(
+    entry => entry.id !== id
+  );
+
+  saveHistory();
+  renderHistory();
+}
+
+function clearAllQuantities() {
+  for (const sellerId of Object.keys(SELLER_ITEMS)) {
+    for (const productName of SELLER_ITEMS[sellerId]) {
+      quantities[makeQuantityKey(
+        sellerId,
+        productName
+      )] = 0;
+    }
+  }
+
+  saveQuantities();
+  renderAll();
+
+  showToast("Все ячейки очищены");
+}
+
+/* =========================
+   MENU
+========================= */
+
+const menuButton =
+  document.getElementById("menuButton");
+
+const overlay =
+  document.getElementById("overlay");
+
+const closePanel =
+  document.getElementById("closePanel");
+
+function openMenu() {
+  overlay.classList.add("open");
+  menuButton.classList.add("hidden");
+}
+
+function closeMenu() {
+  overlay.classList.remove("open");
+  menuButton.classList.remove("hidden");
+}
+
+menuButton.addEventListener("click", openMenu);
+closePanel.addEventListener("click", closeMenu);
+
+overlay.addEventListener("click", event => {
+  if (event.target === overlay) {
+    closeMenu();
+  }
+});
+
+/* =========================
+   SEARCH
+========================= */
+
+document
+  .getElementById("search")
+  .addEventListener("input", renderAll);
+
+/* =========================
+   CLEAR
+========================= */
+
+document
+  .getElementById("clearButton")
+  .addEventListener("click", clearAllQuantities);
+
+/* =========================
+   AI MODAL
+========================= */
+
+const aiButton =
+  document.getElementById("aiButton");
+
+const aiModal =
+  document.getElementById("aiModal");
+
+const closeAiModal =
+  document.getElementById("closeAiModal");
+
+const pasteZone =
+  document.getElementById("pasteZone");
+
+const pasteButton =
+  document.getElementById("pasteButton");
+
+const imageFile =
+  document.getElementById("imageFile");
+
+const imagePreview =
+  document.getElementById("imagePreview");
+
+const previewImage =
+  document.getElementById("previewImage");
+
+const previewCaption =
+  document.getElementById("previewCaption");
+
+const aiStatus =
+  document.getElementById("aiStatus");
+
+const recognitionResult =
+  document.getElementById("recognitionResult");
+
+const recognitionList =
+  document.getElementById("recognitionList");
+
+const resultSummary =
+  document.getElementById("resultSummary");
+
+const retryRecognition =
+  document.getElementById("retryRecognition");
+
+const applyRecognition =
+  document.getElementById("applyRecognition");
+
+function openAiModal() {
+  aiModal.classList.add("open");
+
+  aiStatus.textContent =
+    "Сделай скриншот и нажми Ctrl+V";
+
+  pasteZone.focus();
+}
+
+function closeAiModalWindow() {
+  aiModal.classList.remove("open");
+}
+
+aiButton.addEventListener("click", openAiModal);
+closeAiModal.addEventListener("click", closeAiModalWindow);
+
+aiModal.addEventListener("click", event => {
+  if (event.target === aiModal) {
+    closeAiModalWindow();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    if (aiModal.classList.contains("open")) {
+      closeAiModalWindow();
+    }
+
+    if (overlay.classList.contains("open")) {
+      closeMenu();
+    }
+  }
+});
+
+/* =========================
+   CLIPBOARD PASTE
+========================= */
+
+function findImageInClipboard(clipboardData) {
+  if (!clipboardData || !clipboardData.items) {
+    return null;
+  }
+
+  for (const item of clipboardData.items) {
+    if (
+      item.kind === "file" &&
+      item.type.startsWith("image/")
+    ) {
+      return item.getAsFile();
+    }
+  }
+
+  return null;
+}
+
+async function handleClipboardImage(file) {
+  if (!file) {
+    aiStatus.textContent =
+      "В буфере нет изображения. Сначала сделай скриншот.";
+    return;
+  }
+
+  await loadImageFile(file, "Скриншот вставлен из буфера обмена");
+}
+
+document.addEventListener("paste", event => {
+  if (!aiModal.classList.contains("open")) {
+    return;
+  }
+
+  const image = findImageInClipboard(
+    event.clipboardData
+  );
+
+  if (!image) {
+    return;
+  }
+
+  event.preventDefault();
+  handleClipboardImage(image);
+});
+
+pasteZone.addEventListener("paste", event => {
+  const image = findImageInClipboard(
+    event.clipboardData
+  );
+
+  if (!image) {
+    return;
+  }
+
+  event.preventDefault();
+  handleClipboardImage(image);
+});
+
+pasteZone.addEventListener("focus", () => {
+  pasteZone.classList.add("focused");
+});
+
+pasteZone.addEventListener("blur", () => {
+  pasteZone.classList.remove("focused");
+});
+
+/* =========================
+   CLIPBOARD BUTTON
+========================= */
+
+pasteButton.addEventListener("click", async () => {
+  try {
+    if (!navigator.clipboard || !window.ClipboardItem) {
+      pasteZone.focus();
+
+      aiStatus.textContent =
+        "Нажми Ctrl+V после копирования скриншота.";
+
+      return;
+    }
+
+    const items =
+      await navigator.clipboard.read();
+
+    for (const item of items) {
+      const imageType =
+        item.types.find(type =>
+          type.startsWith("image/")
+        );
+
+      if (!imageType) {
+        continue;
+      }
+
+      const blob =
+        await item.getType(imageType);
+
+      await loadImageFile(
+        blob,
+        "Скриншот вставлен из буфера обмена"
+      );
+
+      return;
+    }
+
+    aiStatus.textContent =
+      "В буфере не найдено изображение.";
+  } catch (error) {
+    console.error(error);
+
+    pasteZone.focus();
+
+    aiStatus.textContent =
+      "Не удалось прочитать буфер. Нажми Ctrl+V.";
+  }
+});
+
+/* =========================
+   FILE INPUT
+========================= */
+
+imageFile.addEventListener("change", async () => {
+  const file = imageFile.files?.[0];
+
+  if (!file) return;
+
+  await loadImageFile(
+    file,
+    "Изображение загружено из файла"
+  );
+});
+
+async function loadImageFile(file, caption) {
+  if (!file || !String(file.type).startsWith("image/")) {
+    aiStatus.textContent =
+      "Нужен именно файл изображения.";
+    return;
+  }
+
+  try {
+    const dataUrl =
+      await fileToDataUrl(file);
+
+    currentImageDataUrl = dataUrl;
+
+    previewImage.src = dataUrl;
+    previewCaption.textContent = caption;
+
+    imagePreview.classList.add("open");
+
+    recognitionResult.classList.remove("open");
+    recognitionList.innerHTML = "";
+    resultSummary.textContent = "";
+
+    currentRecognition = [];
+
+    aiStatus.textContent =
+      "Изображение готово. Можно запускать распознавание.";
+
+    await recognizeCurrentImage();
+  } catch (error) {
+    console.error(error);
+
+    aiStatus.textContent =
+      "Не удалось загрузить изображение.";
+  }
+}
+
+function fileToDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      resolve(String(reader.result));
     };
 
-
-    /* =====================================================
-       DOM
-    ===================================================== */
-
-    const app =
-      document.getElementById(
-        "app"
+    reader.onerror = () => {
+      reject(
+        new Error("Ошибка чтения файла")
       );
+    };
 
+    reader.readAsDataURL(file);
+  });
+}
 
-    const menuButton =
-      document.getElementById(
-        "menuButton"
+/* =========================
+   AI RECOGNITION
+========================= */
+
+async function recognizeCurrentImage() {
+  if (!currentImageDataUrl) {
+    aiStatus.textContent =
+      "Сначала вставь или выбери изображение.";
+    return;
+  }
+
+  recognitionResult.classList.remove("open");
+  currentRecognition = [];
+
+  retryRecognition.disabled = true;
+  applyRecognition.disabled = true;
+
+  aiStatus.textContent =
+    "🤖 Распознаю предметы...";
+
+  try {
+    const response = await fetch(
+      "/api/recognize",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          image: currentImageDataUrl
+        })
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        result?.error ||
+        "Ошибка сервера"
       );
+    }
 
+    const items = Array.isArray(result.items)
+      ? result.items
+      : [];
 
-    const menuOverlay =
-      document.getElementById(
-        "menuOverlay"
-      );
+    const merged = {};
 
+    for (const item of items) {
+      if (
+        !item ||
+        !ALLOWED_AI_ITEMS.includes(item.name)
+      ) {
+        continue;
+      }
 
-    const closeMenuButton =
-      document.getElementById(
-        "closeMenuButton"
-      );
-
-
-    const clearAllButton =
-      document.getElementById(
-        "clearAllButton"
-      );
-
-
-    const historyContainer =
-      document.getElementById(
-        "historyContainer"
-      );
-
-
-    const menuStatus =
-      document.getElementById(
-        "menuStatus"
-      );
-
-
-    const openAiButton =
-      document.getElementById(
-        "openAiButton"
-      );
-
-
-    const aiOverlay =
-      document.getElementById(
-        "aiOverlay"
-      );
-
-
-    const aiCloseButton =
-      document.getElementById(
-        "aiCloseButton"
-      );
-
-
-    const aiDropzone =
-      document.getElementById(
-        "aiDropzone"
-      );
-
-
-    const aiFileInput =
-      document.getElementById(
-        "aiFileInput"
-      );
-
-
-    const aiStatus =
-      document.getElementById(
-        "aiStatus"
-      );
-
-
-    const aiResults =
-      document.getElementById(
-        "aiResults"
-      );
-
-
-    /* =====================================================
-       HELPERS
-    ===================================================== */
-
-    function escapeHtml(value) {
-
-      return String(
-        value ?? ""
-      )
-
-        .replaceAll(
-          "&",
-          "&amp;"
-        )
-
-        .replaceAll(
-          "<",
-          "&lt;"
-        )
-
-        .replaceAll(
-          ">",
-          "&gt;"
-        )
-
-        .replaceAll(
-          '"',
-          "&quot;"
-        )
-
-        .replaceAll(
-          "'",
-          "&#039;"
+      const quantity =
+        Math.max(
+          0,
+          Math.floor(
+            Number(item.quantity) || 0
+          )
         );
 
-    }
-
-
-    function cleanName(value) {
-
-      let name =
-        String(
-          value ?? ""
-        ).trim();
-
-
-      name =
-        name.replace(
-          /^\s*\d+(?:[.,]\d+)?\s*/u,
-          ""
-        );
-
-
-      name =
-        name.trim();
-
-
-      if (
-        /^\d+(?:[.,]\d+)?$/u.test(
-          name
-        )
-      ) {
-
-        return "";
-
-      }
-
-
-      if (
-        name.toLowerCase() ===
-        "коффе"
-      ) {
-
-        return "Кофе";
-
-      }
-
-
-      return name;
-
-    }
-
-
-    function normalizeProductName(
-      value
-    ) {
-
-      return String(
-        value ?? ""
-      )
-
-        .toLowerCase()
-
-        .replace(
-          /ё/g,
-          "е"
-        )
-
-        .replace(
-          /\s+/g,
-          " "
-        )
-
-        .trim();
-
-    }
-
-
-    function toNumber(value) {
-
-      if (
-        value === null ||
-        value === undefined
-      ) {
-
-        return 0;
-
-      }
-
-
-      const text =
-        String(value)
-
-          .replace(
-            /\u00A0/g,
-            ""
-          )
-
-          .replace(
-            /\s/g,
-            ""
-          )
-
-          .replace(
-            ",",
-            "."
-          );
-
-
-      if (!text) {
-
-        return 0;
-
-      }
-
-
-      const number =
-        Number(text);
-
-
-      return Number.isFinite(
-        number
-      )
-        ? number
-        : 0;
-
-    }
-
-
-    function formatMoney(value) {
-
-      const number =
-        Number(value) || 0;
-
-
-      return (
-
-        number.toLocaleString(
-          "ru-RU",
-          {
-            maximumFractionDigits: 2
-          }
-        ) +
-
-        " ₽"
-
-      );
-
-    }
-
-
-    function formatNumber(value) {
-
-      const number =
-        Number(value) || 0;
-
-
-      return number.toLocaleString(
-        "ru-RU",
-        {
-          maximumFractionDigits: 2
-        }
-      );
-
-    }
-
-
-    function formatConfidence(
-      value
-    ) {
-
-      const number =
-        Number(value);
-
-
-      if (
-        !Number.isFinite(number)
-      ) {
-
-        return "—";
-
-      }
-
-
-      return (
+      const confidence =
         Math.max(
           0,
           Math.min(
-            100,
-            Math.round(
-              number * 100
-            )
-          )
-        ) +
-        "%"
-      );
-
-    }
-
-
-    /* =====================================================
-       CSV
-    ===================================================== */
-
-    function parseCsv(text) {
-
-      const rows = [];
-
-      let row = [];
-
-      let cell = "";
-
-      let insideQuotes = false;
-
-
-      for (
-        let i = 0;
-        i < text.length;
-        i++
-      ) {
-
-        const char =
-          text[i];
-
-        const next =
-          text[i + 1];
-
-
-        if (
-          char === '"' &&
-          insideQuotes &&
-          next === '"'
-        ) {
-
-          cell += '"';
-
-          i++;
-
-          continue;
-
-        }
-
-
-        if (
-          char === '"'
-        ) {
-
-          insideQuotes =
-            !insideQuotes;
-
-          continue;
-
-        }
-
-
-        if (
-          char === "," &&
-          !insideQuotes
-        ) {
-
-          row.push(cell);
-
-          cell = "";
-
-          continue;
-
-        }
-
-
-        if (
-          (
-            char === "\n" ||
-            char === "\r"
-          ) &&
-          !insideQuotes
-        ) {
-
-          if (
-            char === "\r" &&
-            next === "\n"
-          ) {
-
-            i++;
-
-          }
-
-
-          row.push(cell);
-
-          cell = "";
-
-
-          if (
-            row.some(
-              item =>
-                String(item)
-                  .trim() !== ""
-            )
-          ) {
-
-            rows.push(row);
-
-          }
-
-
-          row = [];
-
-          continue;
-
-        }
-
-
-        cell += char;
-
-      }
-
-
-      if (
-        cell !== "" ||
-        row.length > 0
-      ) {
-
-        row.push(cell);
-
-
-        if (
-          row.some(
-            item =>
-              String(item)
-                .trim() !== ""
-          )
-        ) {
-
-          rows.push(row);
-
-        }
-
-      }
-
-
-      return rows;
-
-    }
-
-
-    /* =====================================================
-       BUILD SELLERS
-    ===================================================== */
-
-    function buildSellers(
-      rows
-    ) {
-
-      const sellers = [
-
-        {
-          name:
-            "Логово Хайзенберга",
-
-          products: []
-
-        },
-
-        {
-          name:
-            "Staraptor",
-
-          products: []
-
-        },
-
-        {
-          name:
-            "WhiteFox",
-
-          products: []
-
-        }
-
-      ];
-
-
-      const iconIndexes = {
-
-        "Логово Хайзенберга": 0,
-
-        "Staraptor": 0,
-
-        "WhiteFox": 0
-
-      };
-
-
-      for (
-        const row of rows
-      ) {
-
-        /* =========================
-           LOGOVO
-        ========================== */
-
-        const logovoName =
-          cleanName(
-            row[0]
-          );
-
-
-        const logovoPrice =
-          toNumber(
-            row[1]
-          );
-
-
-        if (
-          logovoName &&
-          !/кол-во|сумма/i.test(
-            logovoName
-          ) &&
-          logovoPrice > 0
-        ) {
-
-          const index =
-            iconIndexes[
-              "Логово Хайзенберга"
-            ];
-
-
-          sellers[0]
-            .products
-            .push({
-
-              name:
-                logovoName,
-
-              price:
-                logovoPrice,
-
-              quantity:
-                0,
-
-              icon:
-                SELLER_ICONS[
-                  "Логово Хайзенберга"
-                ][index] || ""
-
-            });
-
-
-          iconIndexes[
-            "Логово Хайзенберга"
-          ]++;
-
-        }
-
-
-        /* =========================
-           STARAPTOR
-        ========================== */
-
-        const staraptorName =
-          cleanName(
-            row[4]
-          );
-
-
-        const staraptorPrice =
-          toNumber(
-            row[5]
-          );
-
-
-        if (
-          staraptorName &&
-          !/кол-во|сумма/i.test(
-            staraptorName
-          ) &&
-          staraptorPrice > 0
-        ) {
-
-          const index =
-            iconIndexes[
-              "Staraptor"
-            ];
-
-
-          sellers[1]
-            .products
-            .push({
-
-              name:
-                staraptorName,
-
-              price:
-                staraptorPrice,
-
-              quantity:
-                0,
-
-              icon:
-                SELLER_ICONS[
-                  "Staraptor"
-                ][index] || ""
-
-            });
-
-
-          iconIndexes[
-            "Staraptor"
-          ]++;
-
-        }
-
-
-        /* =========================
-           WHITEFOX
-        ========================== */
-
-        let whiteFoxName =
-          cleanName(
-            row[8]
-          );
-
-
-        let whiteFoxPrice =
-          toNumber(
-            row[9]
-          );
-
-
-        if (
-          whiteFoxName &&
-          whiteFoxName.toLowerCase() ===
-          "мясо"
-        ) {
-
-          const meatNames = [
-
-            "Мясо шавки",
-
-            "Мясо кабана",
-
-            "Мясо хрюши"
-
-          ];
-
-
-          const index =
-            iconIndexes[
-              "WhiteFox"
-            ];
-
-
-          if (
-            index < 3
-          ) {
-
-            whiteFoxName =
-              meatNames[index];
-
-            whiteFoxPrice =
-              3000;
-
-          }
-
-        }
-
-
-        if (
-          whiteFoxName &&
-          !/кол-во|сумма/i.test(
-            whiteFoxName
-          ) &&
-          whiteFoxPrice > 0
-        ) {
-
-          const index =
-            iconIndexes[
-              "WhiteFox"
-            ];
-
-
-          sellers[2]
-            .products
-            .push({
-
-              name:
-                whiteFoxName,
-
-              price:
-                whiteFoxPrice,
-
-              quantity:
-                0,
-
-              icon:
-                SELLER_ICONS[
-                  "WhiteFox"
-                ][index] || ""
-
-            });
-
-
-          iconIndexes[
-            "WhiteFox"
-          ]++;
-
-        }
-
-      }
-
-
-      return sellers;
-
-    }
-
-
-    /* =====================================================
-       STORAGE
-    ===================================================== */
-
-    function getQuantityStorage() {
-
-      try {
-
-        const raw =
-          localStorage.getItem(
-            QUANTITY_STORAGE_KEY
-          );
-
-
-        if (!raw) {
-
-          return {};
-
-        }
-
-
-        const parsed =
-          JSON.parse(
-            raw
-          );
-
-
-        return (
-          parsed &&
-          typeof parsed === "object"
-        )
-          ? parsed
-          : {};
-
-      } catch {
-
-        return {};
-
-      }
-
-    }
-
-
-    function saveQuantities() {
-
-      const data = {};
-
-
-      state.sellers.forEach(
-        seller => {
-
-          seller.products.forEach(
-            product => {
-
-              data[
-                seller.name +
-                "::" +
-                product.name
-              ] =
-                product.quantity;
-
-            }
-          );
-
-        }
-      );
-
-
-      try {
-
-        localStorage.setItem(
-          QUANTITY_STORAGE_KEY,
-          JSON.stringify(
-            data
+            1,
+            Number(item.confidence) || 0
           )
         );
 
-      } catch {}
-
-    }
-
-
-    function restoreQuantities() {
-
-      const stored =
-        getQuantityStorage();
-
-
-      state.sellers.forEach(
-        seller => {
-
-          seller.products.forEach(
-            product => {
-
-              const key =
-                seller.name +
-                "::" +
-                product.name;
-
-
-              if (
-                Object.prototype.hasOwnProperty.call(
-                  stored,
-                  key
-                )
-              ) {
-
-                product.quantity =
-                  Math.max(
-                    0,
-                    Math.floor(
-                      toNumber(
-                        stored[key]
-                      )
-                    )
-                  );
-
-              }
-
-            }
-          );
-
-        }
-      );
-
-    }
-
-
-    function loadHistory() {
-
-      try {
-
-        const raw =
-          localStorage.getItem(
-            HISTORY_STORAGE_KEY
-          );
-
-
-        if (!raw) {
-
-          return [];
-
-        }
-
-
-        const parsed =
-          JSON.parse(
-            raw
-          );
-
-
-        return Array.isArray(
-          parsed
-        )
-          ? parsed
-          : [];
-
-      } catch {
-
-        return [];
-
+      if (!merged[item.name]) {
+        merged[item.name] = {
+          name: item.name,
+          quantity: 0,
+          confidence
+        };
       }
 
-    }
+      merged[item.name].quantity += quantity;
 
-
-    function saveHistory() {
-
-      try {
-
-        localStorage.setItem(
-          HISTORY_STORAGE_KEY,
-          JSON.stringify(
-            state.history
-          )
-        );
-
-      } catch {}
-
-    }
-
-
-    /* =====================================================
-       TOTALS
-    ===================================================== */
-
-    function getSellerTotal(
-      seller
-    ) {
-
-      return seller.products.reduce(
-
-        (
-          total,
-          product
-        ) =>
-
-          total +
-          product.price *
-          product.quantity,
-
-        0
-
-      );
-
-    }
-
-
-    /* =====================================================
-       WIDTHS
-    ===================================================== */
-
-    function resizeQuantityInput(
-      input
-    ) {
-
-      const value =
-        String(
-          input.value || "0"
-        );
-
-
-      /*
-        Только сам input меняет ширину.
-        Родитель остаётся по центру.
-
-        Поэтому:
-        1
-        12
-        123
-        1234
-
-        расходятся одинаково
-        влево и вправо.
-      */
-
-      const width =
+      merged[item.name].confidence =
         Math.max(
-          44,
-          value.length * 14 + 16
+          merged[item.name].confidence,
+          confidence
         );
-
-
-      input.style.width =
-        width + "px";
-
     }
 
+    currentRecognition =
+      Object.values(merged)
+        .filter(item => item.quantity > 0);
 
-    function resizeSum(
-      element
-    ) {
+    renderRecognition();
 
-      const value =
-        String(
-          element.textContent ||
-          "0 ₽"
-        );
+    recognitionResult.classList.add("open");
 
+    retryRecognition.disabled = false;
+    applyRecognition.disabled =
+      currentRecognition.length === 0;
 
-      const width =
-        Math.max(
-          84,
-          Math.min(
-            140,
-            value.length * 8 + 18
-          )
-        );
-
-
-      element.style.width =
-        width + "px";
-
-    }
-
-
-    /* =====================================================
-       UPDATE
-    ===================================================== */
-
-    function updateSellerUI(
-      sellerIndex
-    ) {
-
-      const seller =
-        state.sellers[
-          sellerIndex
-        ];
-
-
-      if (!seller) {
-
-        return;
-
-      }
-
-
-      let total = 0;
-
-
-      seller.products.forEach(
-
-        (
-          product,
-          productIndex
-        ) => {
-
-          total +=
-            product.price *
-            product.quantity;
-
-
-          const input =
-            document.querySelector(
-              `input[data-seller="${sellerIndex}"][data-product="${productIndex}"]`
-            );
-
-
-          const card =
-            document.querySelector(
-              `.product-card[data-seller="${sellerIndex}"][data-product="${productIndex}"]`
-            );
-
-
-          const sum =
-            document.querySelector(
-              `.sum[data-seller="${sellerIndex}"][data-product="${productIndex}"]`
-            );
-
-
-          if (input) {
-
-            input.value =
-              product.quantity;
-
-            resizeQuantityInput(
-              input
-            );
-
-          }
-
-
-          if (sum) {
-
-            sum.textContent =
-              formatMoney(
-                product.price *
-                product.quantity
-              );
-
-            resizeSum(
-              sum
-            );
-
-          }
-
-
-          if (card) {
-
-            card.classList.toggle(
-              "has-quantity",
-              product.quantity > 0
-            );
-
-          }
-
-        }
-
-      );
-
-
-      const sellerTotal =
-        document.querySelector(
-          `.seller-total-value[data-seller="${sellerIndex}"]`
-        );
-
-
-      const bottomTotal =
-        document.querySelector(
-          `.bottom-total-value[data-seller="${sellerIndex}"]`
-        );
-
-
-      if (sellerTotal) {
-
-        sellerTotal.textContent =
-          formatMoney(
-            total
-          );
-
-      }
-
-
-      if (bottomTotal) {
-
-        bottomTotal.textContent =
-          formatMoney(
-            total
-          );
-
-      }
-
-    }
-
-
-    function updateAllUI() {
-
-      state.sellers.forEach(
-        (
-          _,
-          index
-        ) => {
-
-          updateSellerUI(
-            index
-          );
-
-        }
-      );
-
-    }
-
-
-    /* =====================================================
-       RENDER SITE
-    ===================================================== */
-
-    function render() {
-
-      if (
-        !state.sellers.length
-      ) {
-
-        app.innerHTML = `
-
-          <div class="error">
-
-            Не удалось найти товары.
-
-          </div>
-
-        `;
-
-        return;
-
-      }
-
-
-      app.innerHTML = `
-
-        <div class="sellers-grid">
-
-          ${state.sellers.map(
-
-            (
-              seller,
-              sellerIndex
-            ) => {
-
-              const total =
-                getSellerTotal(
-                  seller
-                );
-
-
-              return `
-
-                <section
-                  class="seller"
-                  data-seller-section="${sellerIndex}"
-                >
-
-                  <div class="seller-header">
-
-                    <div class="seller-name">
-
-                      ${escapeHtml(
-                        seller.name
-                      )}
-
-                    </div>
-
-
-                    <div class="seller-total">
-
-                      Сумма:
-
-                      <span
-                        class="seller-total-value"
-                        data-seller="${sellerIndex}"
-                      >
-
-                        ${formatMoney(
-                          total
-                        )}
-
-                      </span>
-
-                    </div>
-
-
-                    <button
-                      class="sold-button"
-                      type="button"
-                      data-sold-seller="${sellerIndex}"
-                    >
-
-                      Продал
-
-                    </button>
-
-                  </div>
-
-
-                  <div class="products">
-
-                    ${seller.products.map(
-
-                      (
-                        product,
-                        productIndex
-                      ) => `
-
-                        <div
-                          class="product-card ${
-                            product.quantity > 0
-                              ? "has-quantity"
-                              : ""
-                          }"
-
-                          data-seller="${sellerIndex}"
-
-                          data-product="${productIndex}"
-                        >
-
-                          <img
-                            class="product-icon"
-
-                            src="${escapeHtml(
-                              product.icon
-                            )}"
-
-                            alt="${escapeHtml(
-                              product.name
-                            )}"
-
-                            loading="lazy"
-                          />
-
-
-                          <div class="product-info">
-
-                            <div
-                              class="product-name"
-                              title="${escapeHtml(
-                                product.name
-                              )}"
-                            >
-
-                              ${escapeHtml(
-                                product.name
-                              )}
-
-                            </div>
-
-
-                            <div class="product-price">
-
-                              цена:
-                              ${formatNumber(
-                                product.price
-                              )}
-                              ₽ / шт
-
-                            </div>
-
-                          </div>
-
-
-                          <div class="quantity-area">
-
-                            <input
-                              class="quantity-input"
-
-                              type="number"
-
-                              min="0"
-
-                              step="1"
-
-                              inputmode="numeric"
-
-                              value="${product.quantity}"
-
-                              data-seller="${sellerIndex}"
-
-                              data-product="${productIndex}"
-
-                              autocomplete="off"
-
-                              aria-label="Количество ${escapeHtml(
-                                product.name
-                              )}"
-                            />
-
-                          </div>
-
-
-                          <div class="sum-area">
-
-                            <span
-                              class="sum"
-
-                              data-seller="${sellerIndex}"
-
-                              data-product="${productIndex}"
-                            >
-
-                              ${formatMoney(
-                                product.price *
-                                product.quantity
-                              )}
-
-                            </span>
-
-                          </div>
-
-                        </div>
-
-                      `
-
-                    ).join("")}
-
-                  </div>
-
-
-                  <div class="bottom-total">
-
-                    <div class="bottom-total-label">
-
-                      Общая сумма:
-
-                    </div>
-
-
-                    <span
-                      class="bottom-total-value"
-                      data-seller="${sellerIndex}"
-                    >
-
-                      ${formatMoney(
-                        total
-                      )}
-
-                    </span>
-
-                  </div>
-
-                </section>
-
-              `;
-
-            }
-
-          ).join("")}
-
-        </div>
-
-      `;
-
-
-      document
-        .querySelectorAll(
-          ".quantity-input"
-        )
-        .forEach(
-
-          input => {
-
-            resizeQuantityInput(
-              input
-            );
-
-
-            input.addEventListener(
-              "input",
-              () => {
-
-                const sellerIndex =
-                  Number(
-                    input.dataset.seller
-                  );
-
-
-                const productIndex =
-                  Number(
-                    input.dataset.product
-                  );
-
-
-                const seller =
-                  state.sellers[
-                    sellerIndex
-                  ];
-
-
-                const product =
-                  seller?.products[
-                    productIndex
-                  ];
-
-
-                if (!product) {
-
-                  return;
-
-                }
-
-
-                let amount =
-                  Math.floor(
-                    toNumber(
-                      input.value
-                    )
-                  );
-
-
-                if (
-                  !Number.isFinite(
-                    amount
-                  ) ||
-                  amount < 0
-                ) {
-
-                  amount = 0;
-
-                }
-
-
-                product.quantity =
-                  amount;
-
-
-                input.value =
-                  amount;
-
-
-                resizeQuantityInput(
-                  input
-                );
-
-
-                saveQuantities();
-
-
-                updateSellerUI(
-                  sellerIndex
-                );
-
-              }
-            );
-
-
-            input.addEventListener(
-              "focus",
-              () => {
-
-                requestAnimationFrame(
-                  () =>
-                    input.select()
-                );
-
-              }
-            );
-
-          }
-
-        );
-
-
-      document
-        .querySelectorAll(
-          "[data-sold-seller]"
-        )
-        .forEach(
-
-          button => {
-
-            button.addEventListener(
-              "click",
-              () => {
-
-                markSellerAsSold(
-
-                  Number(
-                    button.dataset
-                      .soldSeller
-                  ),
-
-                  button
-
-                );
-
-              }
-            );
-
-          }
-
-        );
-
-    }
-
-
-    /* =====================================================
-       SOLD
-    ===================================================== */
-
-    function markSellerAsSold(
-      sellerIndex,
-      button
-    ) {
-
-      const seller =
-        state.sellers[
-          sellerIndex
-        ];
-
-
-      if (!seller) {
-
-        return;
-
-      }
-
-
-      const snapshot =
-        seller.products.map(
-
-          product => ({
-
-            name:
-              product.name,
-
-            price:
-              product.price,
-
-            quantity:
-              product.quantity
-
-          })
-
-        );
-
-
-      const total =
-        getSellerTotal(
-          seller
-        );
-
-
-      const selectedPositions =
-        seller.products.filter(
-
-          product =>
-            product.quantity > 0
-
-        ).length;
-
-
-      const entry = {
-
-        id:
-          Date.now() +
-          "_" +
-          Math.random()
-            .toString(36)
-            .slice(2),
-
-        date:
-          new Date().toISOString(),
-
-        seller:
-          seller.name,
-
-        total,
-
-        selectedPositions,
-
-        products:
-          snapshot
-
-      };
-
-
-      state.history.unshift(
-        entry
-      );
-
-
-      if (
-        state.history.length > 100
-      ) {
-
-        state.history =
-          state.history.slice(
-            0,
-            100
-          );
-
-      }
-
-
-      saveHistory();
-
-      renderHistory();
-
-
-      const oldText =
-        button.textContent;
-
-
-      button.textContent =
-        "✓ Сохранено";
-
-
-      button.classList.add(
-        "saved"
-      );
-
-
-      setTimeout(
-        () => {
-
-          button.textContent =
-            oldText;
-
-          button.classList.remove(
-            "saved"
-          );
-
-        },
-        1300
-      );
-
-    }
-
-
-    /* =====================================================
-       HISTORY
-    ===================================================== */
-
-    function formatDate(
-      dateString
-    ) {
-
-      const date =
-        new Date(
-          dateString
-        );
-
-
-      if (
-        Number.isNaN(
-          date.getTime()
-        )
-      ) {
-
-        return "Неизвестная дата";
-
-      }
-
-
-      return date.toLocaleString(
-        "ru-RU",
-        {
-
-          day: "2-digit",
-
-          month: "2-digit",
-
-          year: "numeric",
-
-          hour: "2-digit",
-
-          minute: "2-digit"
-
-        }
-      );
-
-    }
-
-
-    function renderHistory() {
-
-      if (
-        !state.history.length
-      ) {
-
-        historyContainer.innerHTML = `
-
-          <div class="history-empty">
-
-            История пока пуста.
-
-          </div>
-
-        `;
-
-        return;
-
-      }
-
-
-      historyContainer.innerHTML = `
-
-        <div class="history-list">
-
-          ${state.history.map(
-
-            entry => `
-
-              <div class="history-item">
-
-                <div class="history-head">
-
-                  <div class="history-seller">
-
-                    ${escapeHtml(
-                      entry.seller
-                    )}
-
-                  </div>
-
-
-                  <div class="history-date">
-
-                    ${formatDate(
-                      entry.date
-                    )}
-
-                  </div>
-
-                </div>
-
-
-                <div class="history-total">
-
-                  Сумма:
-
-                  <span>
-
-                    ${formatMoney(
-                      entry.total
-                    )}
-
-                  </span>
-
-                </div>
-
-
-                <div class="history-meta">
-
-                  Выбрано позиций:
-                  ${
-                    Number(
-                      entry.selectedPositions
-                    ) || 0
-                  }
-
-                </div>
-
-
-                <div class="history-actions">
-
-                  <button
-                    type="button"
-                    data-restore-history="${escapeHtml(
-                      entry.id
-                    )}"
-                  >
-
-                    Восстановить
-
-                  </button>
-
-
-                  <button
-                    type="button"
-                    class="delete-history"
-
-                    data-delete-history="${escapeHtml(
-                      entry.id
-                    )}"
-                  >
-
-                    Удалить
-
-                  </button>
-
-                </div>
-
-              </div>
-
-            `
-
-          ).join("")}
-
-        </div>
-
-      `;
-
-
-      document
-        .querySelectorAll(
-          "[data-restore-history]"
-        )
-        .forEach(
-
-          button => {
-
-            button.addEventListener(
-              "click",
-              () => {
-
-                restoreHistoryEntry(
-                  button.dataset
-                    .restoreHistory
-                );
-
-              }
-            );
-
-          }
-
-        );
-
-
-      document
-        .querySelectorAll(
-          "[data-delete-history]"
-        )
-        .forEach(
-
-          button => {
-
-            button.addEventListener(
-              "click",
-              () => {
-
-                deleteHistoryEntry(
-                  button.dataset
-                    .deleteHistory
-                );
-
-              }
-            );
-
-          }
-
-        );
-
-    }
-
-
-    function restoreHistoryEntry(
-      id
-    ) {
-
-      const entry =
-        state.history.find(
-          item =>
-            item.id === id
-        );
-
-
-      if (!entry) {
-
-        return;
-
-      }
-
-
-      const seller =
-        state.sellers.find(
-          item =>
-            item.name ===
-            entry.seller
-        );
-
-
-      if (!seller) {
-
-        return;
-
-      }
-
-
-      seller.products.forEach(
-        product => {
-
-          product.quantity =
-            0;
-
-        }
-      );
-
-
-      entry.products.forEach(
-        savedProduct => {
-
-          const product =
-            seller.products.find(
-              item =>
-                item.name ===
-                savedProduct.name
-            );
-
-
-          if (product) {
-
-            product.quantity =
-              Math.max(
-                0,
-                Math.floor(
-                  toNumber(
-                    savedProduct.quantity
-                  )
-                )
-              );
-
-          }
-
-        }
-      );
-
-
-      saveQuantities();
-
-      updateAllUI();
-
-
-      menuStatus.textContent =
-        `Восстановлено: ${seller.name}`;
-
-
-      setTimeout(
-        () => {
-
-          menuStatus.textContent =
-            "";
-
-        },
-        1500
-      );
-
-    }
-
-
-    function deleteHistoryEntry(
-      id
-    ) {
-
-      state.history =
-        state.history.filter(
-          item =>
-            item.id !== id
-        );
-
-
-      saveHistory();
-
-      renderHistory();
-
-    }
-
-
-    /* =====================================================
-       CLEAR ALL
-    ===================================================== */
-
-    function clearAllQuantities() {
-
-      state.sellers.forEach(
-        seller => {
-
-          seller.products.forEach(
-            product => {
-
-              product.quantity =
-                0;
-
-            }
-          );
-
-        }
-      );
-
-
-      saveQuantities();
-
-      updateAllUI();
-
-
-      clearAllButton.textContent =
-        "✓ Все ячейки очищены";
-
-
-      setTimeout(
-        () => {
-
-          clearAllButton.textContent =
-            "🧹 Очистить все ячейки";
-
-        },
-        1300
-      );
-
-    }
-
-
-    /* =====================================================
-       MENU
-    ===================================================== */
-
-    function openMenu() {
-
-      menuOverlay.classList.add(
-        "open"
-      );
-
-
-      menuButton.classList.add(
-        "menu-hidden"
-      );
-
-
-      renderHistory();
-
-    }
-
-
-    function closeMenu() {
-
-      menuOverlay.classList.remove(
-        "open"
-      );
-
-
-      menuButton.classList.remove(
-        "menu-hidden"
-      );
-
-    }
-
-
-    menuButton.addEventListener(
-      "click",
-      openMenu
-    );
-
-
-    closeMenuButton.addEventListener(
-      "click",
-      closeMenu
-    );
-
-
-    menuOverlay.addEventListener(
-      "click",
-      event => {
-
-        if (
-          event.target ===
-          menuOverlay
-        ) {
-
-          closeMenu();
-
-        }
-
-      }
-    );
-
-
-    document.addEventListener(
-      "keydown",
-      event => {
-
-        if (
-          event.key === "Escape" &&
-          menuOverlay.classList.contains(
-            "open"
-          )
-        ) {
-
-          closeMenu();
-
-        }
-
-        if (
-          event.key === "Escape" &&
-          aiOverlay.classList.contains(
-            "open"
-          )
-        ) {
-
-          closeAiModal();
-
-        }
-
-      }
-    );
-
-
-    clearAllButton.addEventListener(
-      "click",
-      clearAllQuantities
-    );
-
-
-    /* =====================================================
-       AI MODAL
-    ===================================================== */
-
-    function openAiModal() {
-
-      aiOverlay.classList.add(
-        "open"
-      );
-
+    if (!currentRecognition.length) {
       aiStatus.textContent =
-        "";
-
-      aiStatus.className =
-        "ai-status";
-
-      aiResults.innerHTML =
-        "";
-
-      state.aiResults =
-        [];
-
-      state.aiTotal =
-        0;
-
-      state.aiImageFile =
-        null;
-
-      aiFileInput.value =
-        "";
-
-    }
-
-
-    function closeAiModal() {
-
-      aiOverlay.classList.remove(
-        "open"
-      );
-
-    }
-
-
-    openAiButton.addEventListener(
-      "click",
-      openAiModal
-    );
-
-
-    aiCloseButton.addEventListener(
-      "click",
-      closeAiModal
-    );
-
-
-    aiOverlay.addEventListener(
-      "click",
-      event => {
-
-        if (
-          event.target ===
-          aiOverlay
-        ) {
-
-          closeAiModal();
-
-        }
-
-      }
-    );
-
-
-    /* =====================================================
-       AI FILE INPUT
-    ===================================================== */
-
-    aiFileInput.addEventListener(
-      "change",
-      () => {
-
-        const file =
-          aiFileInput.files?.[0];
-
-
-        if (!file) {
-
-          return;
-
-        }
-
-
-        processAiImage(
-          file
-        );
-
-      }
-    );
-
-
-    /* =====================================================
-       DRAG & DROP
-    ===================================================== */
-
-    [
-      "dragenter",
-      "dragover"
-    ].forEach(
-      eventName => {
-
-        aiDropzone.addEventListener(
-          eventName,
-          event => {
-
-            event.preventDefault();
-
-            aiDropzone.classList.add(
-              "dragover"
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-    [
-      "dragleave",
-      "drop"
-    ].forEach(
-      eventName => {
-
-        aiDropzone.addEventListener(
-          eventName,
-          event => {
-
-            event.preventDefault();
-
-            aiDropzone.classList.remove(
-              "dragover"
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-    aiDropzone.addEventListener(
-      "drop",
-      event => {
-
-        const file =
-          event.dataTransfer?.files?.[0];
-
-
-        if (!file) {
-
-          return;
-
-        }
-
-
-        if (
-          !file.type.startsWith(
-            "image/"
-          )
-        ) {
-
-          setAiStatus(
-            "Нужен файл изображения PNG, JPG или WEBP.",
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        processAiImage(
-          file
-        );
-
-      }
-    );
-
-
-    /* =====================================================
-       IMAGE TO DATA URL
-    ===================================================== */
-
-    function fileToDataUrl(
-      file
-    ) {
-
-      return new Promise(
-        (
-          resolve,
-          reject
-        ) => {
-
-          const reader =
-            new FileReader();
-
-
-          reader.onload = () =>
-            resolve(
-              String(
-                reader.result
-              )
-            );
-
-
-          reader.onerror = () =>
-            reject(
-              new Error(
-                "Не удалось прочитать изображение."
-              )
-            );
-
-
-          reader.readAsDataURL(
-            file
-          );
-
-        }
-      );
-
-    }
-
-
-    /* =====================================================
-       AI STATUS
-    ===================================================== */
-
-    function setAiStatus(
-      message,
-      type = "normal"
-    ) {
-
+        "Не удалось уверенно распознать подходящие предметы.";
+    } else {
       aiStatus.textContent =
-        message;
-
-
-      aiStatus.className =
-        "ai-status";
-
-
-      if (
-        type === "loading"
-      ) {
-
-        aiStatus.classList.add(
-          "loading"
-        );
-
-      }
-
-
-      if (
-        type === "error"
-      ) {
-
-        aiStatus.style.color =
-          "#ffaaaa";
-
-      }
-
-
-      if (
-        type === "success"
-      ) {
-
-        aiStatus.style.color =
-          "var(--success)";
-
-      }
-
+        "Распознавание завершено.";
     }
+  } catch (error) {
+    console.error(error);
 
+    aiStatus.textContent =
+      "Ошибка распознавания: " +
+      (error?.message || "неизвестная ошибка");
 
-    /* =====================================================
-       PROCESS IMAGE
-    ===================================================== */
+    retryRecognition.disabled = false;
+    applyRecognition.disabled = true;
+  }
+}
 
-    async function processAiImage(
-      file
+function renderRecognition() {
+  recognitionList.innerHTML = "";
+
+  if (!currentRecognition.length) {
+    const empty =
+      document.createElement("div");
+
+    empty.className = "empty";
+    empty.textContent =
+      "Подходящих предметов не найдено.";
+
+    recognitionList.appendChild(empty);
+
+    resultSummary.textContent =
+      "Ничего не будет изменено.";
+
+    return;
+  }
+
+  let totalItems = 0;
+
+  for (const item of currentRecognition) {
+    totalItems += item.quantity;
+
+    const row =
+      document.createElement("div");
+
+    row.className = "recognition-row";
+
+    const name =
+      document.createElement("div");
+
+    name.className = "recognition-name";
+    name.textContent = item.name;
+
+    const qty =
+      document.createElement("div");
+
+    qty.className = "recognition-qty";
+    qty.textContent = "× " + item.quantity;
+
+    const confidence =
+      document.createElement("div");
+
+    confidence.className =
+      "recognition-confidence";
+
+    confidence.textContent =
+      Math.round(item.confidence * 100) +
+      "%";
+
+    row.appendChild(name);
+    row.appendChild(qty);
+    row.appendChild(confidence);
+
+    recognitionList.appendChild(row);
+  }
+
+  resultSummary.textContent =
+    "Всего распознано предметов: " +
+    totalItems +
+    ". Стоимость здесь не считается — после применения сайт сам рассчитает её по актуальным ценам.";
+}
+
+/* =========================
+   APPLY AI
+========================= */
+
+applyRecognition.addEventListener("click", () => {
+  if (!currentRecognition.length) {
+    return;
+  }
+
+  for (const item of currentRecognition) {
+    applyRecognizedItem(item.name, item.quantity);
+  }
+
+  saveQuantities();
+  renderAll();
+
+  showToast(
+    "Распознанные количества применены"
+  );
+
+  closeAiModalWindow();
+});
+
+function findSellerForProduct(productName) {
+  for (const sellerId of Object.keys(SELLER_ITEMS)) {
+    if (
+      SELLER_ITEMS[sellerId].includes(productName)
     ) {
-
-      /*
-        Ограничиваем размер,
-        чтобы случайно не отправить огромный файл.
-      */
-
-      if (
-        file.size >
-        12 * 1024 * 1024
-      ) {
-
-        setAiStatus(
-          "Скриншот слишком большой. Максимум 12 МБ.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      if (
-        ![
-          "image/png",
-          "image/jpeg",
-          "image/webp"
-        ].includes(
-          file.type
-        )
-      ) {
-
-        setAiStatus(
-          "Поддерживаются только PNG, JPG и WEBP.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      try {
-
-        state.aiImageFile =
-          file;
-
-
-        setAiStatus(
-          "ИИ анализирует скриншот...",
-          "loading"
-        );
-
-
-        aiResults.innerHTML =
-          "";
-
-
-        openAiButton.disabled =
-          true;
-
-
-        const dataUrl =
-          await fileToDataUrl(
-            file
-          );
-
-
-        const response =
-          await fetch(
-            "/api/recognize",
-            {
-
-              method:
-                "POST",
-
-              headers: {
-                "Content-Type":
-                  "application/json"
-              },
-
-              body:
-                JSON.stringify({
-                  image: dataUrl
-                })
-
-            }
-          );
-
-
-        let payload =
-          null;
-
-
-        try {
-
-          payload =
-            await response.json();
-
-        } catch {
-
-          payload =
-            null;
-
-        }
-
-
-        if (
-          !response.ok
-        ) {
-
-          throw new Error(
-            payload?.error ||
-            "Сервер не смог обработать изображение."
-          );
-
-        }
-
-
-        if (
-          !payload ||
-          !Array.isArray(
-            payload.items
-          )
-        ) {
-
-          throw new Error(
-            "ИИ вернул некорректный результат."
-          );
-
-        }
-
-
-        applyAiRecognizedResult(
-          payload.items
-        );
-
-
-      } catch (error) {
-
-        console.error(
-          error
-        );
-
-
-        setAiStatus(
-          error?.message ||
-          "Не удалось распознать скриншот.",
-          "error"
-        );
-
-        aiResults.innerHTML =
-          "";
-
-      } finally {
-
-        openAiButton.disabled =
-          false;
-
-      }
-
+      return sellerId;
     }
-
-
-    /* =====================================================
-       MATCH AI RESULTS WITH SITE PRODUCTS
-    ===================================================== */
-
-    function applyAiRecognizedResult(
-      items
-    ) {
-
-      const merged =
-        new Map();
-
-
-      /*
-        Разрешённые товары берём
-        непосредственно из сайта.
-      */
-
-      const catalog = [];
-
-
-      state.sellers.forEach(
-        seller => {
-
-          seller.products.forEach(
-            product => {
-
-              catalog.push({
-                seller:
-                  seller.name,
-
-                name:
-                  product.name,
-
-                price:
-                  product.price
-              });
-
-            }
-          );
-
-        }
-      );
-
-
-      /*
-        Строго сопоставляем по названию.
-      */
-
-      for (
-        const item of items
-      ) {
-
-        const aiName =
-          normalizeProductName(
-            item.name
-          );
-
-
-        if (!aiName) {
-
-          continue;
-
-        }
-
-
-        const match =
-          catalog.find(
-            catalogItem =>
-              normalizeProductName(
-                catalogItem.name
-              ) === aiName
-          );
-
-
-        if (!match) {
-
-          continue;
-
-        }
-
-
-        const quantity =
-          Math.max(
-            0,
-            Math.floor(
-              toNumber(
-                item.quantity
-              )
-            )
-          );
-
-
-        if (
-          quantity <= 0
-        ) {
-
-          continue;
-
-        }
-
-
-        const key =
-          match.seller +
-          "::" +
-          match.name;
-
-
-        if (
-          !merged.has(key)
-        ) {
-
-          merged.set(
-            key,
-            {
-              seller:
-                match.seller,
-
-              name:
-                match.name,
-
-              price:
-                match.price,
-
-              quantity: 0,
-
-              confidence:
-                Number(
-                  item.confidence
-                )
-            }
-          );
-
-        }
-
-
-        const result =
-          merged.get(key);
-
-
-        result.quantity +=
-          quantity;
-
-
-        if (
-          Number.isFinite(
-            Number(
-              item.confidence
-            )
-          )
-        ) {
-
-          result.confidence =
-            Math.min(
-              Number(
-                result.confidence
-              ) || 1,
-
-              Number(
-                item.confidence
-              )
-            );
-
-        }
-
-      }
-
-
-      state.aiResults =
-        Array.from(
-          merged.values()
-        );
-
-
-      state.aiTotal =
-        state.aiResults.reduce(
-
-          (
-            total,
-            item
-          ) =>
-
-            total +
-            item.price *
-            item.quantity,
-
-          0
-        );
-
-
-      renderAiResults();
-
-
-      if (
-        state.aiResults.length
-      ) {
-
-        setAiStatus(
-          "Распознавание завершено. Проверь результат перед применением.",
-          "success"
-        );
-
-      } else {
-
-        setAiStatus(
-          "ИИ не нашёл ни одного из твоих товаров.",
-          "error"
-        );
-
-      }
-
-    }
-
-
-    /* =====================================================
-       RENDER AI RESULTS
-    ===================================================== */
-
-    function renderAiResults() {
-
-      if (
-        !state.aiResults.length
-      ) {
-
-        aiResults.innerHTML =
-          "";
-
-        return;
-
-      }
-
-
-      const rows =
-        state.aiResults.map(
-
-          item => `
-
-            <div class="ai-result-item">
-
-              <div class="ai-result-name">
-
-                ${escapeHtml(
-                  item.name
-                )}
-
-                <div
-                  style="
-                    color: var(--muted);
-                    font-size: 11px;
-                    margin-top: 2px;
-                  "
-                >
-
-                  ${escapeHtml(
-                    item.seller
-                  )}
-
-                </div>
-
-              </div>
-
-
-              <div class="ai-result-quantity">
-
-                × ${formatNumber(
-                  item.quantity
-                )}
-
-              </div>
-
-
-              <div class="ai-result-confidence">
-
-                ${formatConfidence(
-                  item.confidence
-                )}
-
-              </div>
-
-            </div>
-
-          `
-
-        ).join("");
-
-
-      aiResults.innerHTML = `
-
-        <div class="ai-results-title">
-
-          ✓ Распознано:
-
-        </div>
-
-
-        <div class="ai-result-list">
-
-          ${rows}
-
-        </div>
-
-
-        <div class="ai-total-box">
-
-          <div class="ai-total-label">
-
-            Точная сумма:
-
-          </div>
-
-          <div class="ai-total-value">
-
-            ${formatMoney(
-              state.aiTotal
-            )}
-
-          </div>
-
-        </div>
-
-
-        <div class="ai-actions">
-
-          <button
-            class="ai-action-button"
-            type="button"
-            id="aiRetryButton"
-          >
-
-            🔄 Распознать заново
-
-          </button>
-
-
-          <button
-            class="ai-action-button primary"
-            type="button"
-            id="aiApplyButton"
-          >
-
-            ✓ Применить
-
-          </button>
-
-        </div>
-
-      `;
-
-
-      document
-        .getElementById(
-          "aiRetryButton"
-        )
-        .addEventListener(
-          "click",
-          () => {
-
-            if (
-              state.aiImageFile
-            ) {
-
-              processAiImage(
-                state.aiImageFile
-              );
-
-            }
-
-          }
-        );
-
-
-      document
-        .getElementById(
-          "aiApplyButton"
-        )
-        .addEventListener(
-          "click",
-          applyAiResultToTable
-        );
-
-    }
-
-
-    /* =====================================================
-       APPLY AI RESULT
-    ===================================================== */
-
-    function applyAiResultToTable() {
-
-      /*
-        ВАЖНО:
-        Сначала обнуляем только товары,
-        которые присутствуют в результате.
-        Остальные текущие количества
-        не трогаем.
-      */
-
-      state.aiResults.forEach(
-        item => {
-
-          const seller =
-            state.sellers.find(
-              sellerItem =>
-                sellerItem.name ===
-                item.seller
-            );
-
-
-          if (!seller) {
-
-            return;
-
-          }
-
-
-          const product =
-            seller.products.find(
-              productItem =>
-                productItem.name ===
-                item.name
-            );
-
-
-          if (!product) {
-
-            return;
-
-          }
-
-
-          product.quantity =
-            item.quantity;
-
-        }
-      );
-
-
-      saveQuantities();
-
-      updateAllUI();
-
-
-      setAiStatus(
-        "✓ Значения применены к таблице.",
-        "success"
-      );
-
-
-      setTimeout(
-        () => {
-
-          closeAiModal();
-
-        },
-        900
-      );
-
-    }
-
-
-    /* =====================================================
-       LOAD PRODUCTS
-    ===================================================== */
-
-    async function loadProducts() {
-
-      try {
-
-        const response =
-          await fetch(
-
-            SHEET_URL +
-            "&t=" +
-            Date.now(),
-
-            {
-              cache:
-                "no-store"
-            }
-
-          );
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            "Ошибка загрузки таблицы: " +
-            response.status
-          );
-
-        }
-
-
-        const csv =
-          await response.text();
-
-
-        const rows =
-          parseCsv(
-            csv
-          );
-
-
-        state.sellers =
-          buildSellers(
-            rows
-          );
-
-
-        restoreQuantities();
-
-
-        render();
-
-
-        updateAllUI();
-
-
-        renderHistory();
-
-      } catch (error) {
-
-        console.error(
-          error
-        );
-
-
-        app.innerHTML = `
-
-          <div class="error">
-
-            Не удалось загрузить товары
-            из Google Таблицы.
-
-            <br><br>
-
-            Проверь публикацию таблицы
-            и доступ к CSV.
-
-          </div>
-
-        `;
-
-      }
-
-    }
-
-
-    loadProducts();
-
-  </script>
+  }
+
+  return null;
+}
+
+function applyRecognizedItem(productName, quantity) {
+  const sellerId =
+    findSellerForProduct(productName);
+
+  if (!sellerId) {
+    return;
+  }
+
+  setQuantity(
+    sellerId,
+    productName,
+    quantity
+  );
+}
+
+/* =========================
+   RETRY
+========================= */
+
+retryRecognition.addEventListener(
+  "click",
+  recognizeCurrentImage
+);
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer = null;
+
+function showToast(message) {
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer =
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 1800);
+}
+
+/* =========================
+   INIT
+========================= */
+
+renderHistory();
+renderAll();
+loadPrices();
+</script>
 
 </body>
 </html>
